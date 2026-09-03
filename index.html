@@ -1,13 +1,19 @@
 ```html
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>NÃO CLIQUE!</title>
 
 <style>
+
+/* =========================
+   CONFIGURAÇÕES GERAIS
+========================= */
 
 * {
     box-sizing: border-box;
@@ -16,62 +22,127 @@
 }
 
 body {
+
     min-height: 100vh;
+
     font-family: Arial, sans-serif;
-    background: radial-gradient(circle, #35106b, #090014 75%);
+
     color: white;
+
+    background:
+        radial-gradient(circle at center,
+        #35106b,
+        #090014 75%);
+
     overflow: hidden;
+
+    transition: .5s;
 }
 
-/* FUNDO */
+
+/* =========================
+   ESTRELAS
+========================= */
 
 .star {
+
     position: fixed;
+
     width: 3px;
     height: 3px;
+
     background: white;
+
     border-radius: 50%;
+
     opacity: .7;
+
+    animation: piscar 2s infinite alternate;
 }
 
+@keyframes piscar {
+
+    from {
+        opacity: .2;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
 .container {
+
     min-height: 100vh;
+
     display: flex;
+
     flex-direction: column;
-    justify-content: center;
+
     align-items: center;
+
+    justify-content: center;
+
     text-align: center;
+
     padding: 20px;
 }
 
+
 h1 {
+
     font-size: clamp(45px, 8vw, 90px);
+
     color: #ff3030;
+
     text-shadow:
         0 0 10px red,
         0 0 30px red,
         0 0 60px red;
+
     margin-bottom: 10px;
 }
 
+
 .subtitle {
-    color: #ddd;
+
     font-size: 20px;
-    margin-bottom: 35px;
+
+    color: #ddd;
+
+    margin-bottom: 30px;
 }
 
-/* BOTÃO */
+
+/* =========================
+   BOTÃO
+========================= */
 
 #botao {
+
     width: 260px;
+
     height: 260px;
+
     border-radius: 50%;
+
     border: 8px solid #ff7777;
 
-    background: radial-gradient(circle, #ff3030, #900000);
+    background:
+        radial-gradient(circle,
+        #ff3030,
+        #900000);
 
     color: white;
+
     font-size: 32px;
+
     font-weight: bold;
 
     cursor: pointer;
@@ -82,96 +153,266 @@ h1 {
         inset 0 0 30px rgba(0,0,0,.5);
 
     transition: .2s;
+
+    z-index: 10;
 }
 
+
 #botao:hover {
+
     transform: scale(1.08);
 }
 
+
 #botao:active {
+
     transform: scale(.92);
 }
 
-/* CONTADOR */
+
+/* =========================
+   CONTADOR
+========================= */
 
 .contador {
-    margin-top: 30px;
-    font-size: 25px;
+
+    margin-top: 25px;
+
+    font-size: 24px;
+
+    line-height: 1.7;
 }
+
 
 #numero {
+
     color: #ff4444;
+
     font-weight: bold;
 }
+
 
 #meta {
-    color: #ffd700;
+
+    color: gold;
+
     font-weight: bold;
 }
 
-/* MENSAGEM */
 
-#mensagem {
-    margin-top: 20px;
-    min-height: 35px;
-    font-size: 21px;
-    color: #ffe66d;
+#moedas {
+
+    color: #ffd700;
+
+    font-weight: bold;
 }
 
-/* PAINEL */
+
+/* =========================
+   MENSAGEM
+========================= */
+
+#mensagem {
+
+    margin-top: 15px;
+
+    min-height: 35px;
+
+    color: #ffe66d;
+
+    font-size: 20px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   PAINEL
+========================= */
 
 .painel {
+
     position: fixed;
+
     top: 20px;
+
     left: 20px;
 
     padding: 15px 20px;
 
-    background: rgba(0,0,0,.6);
-    border: 1px solid #7d3cff;
+    background:
+        rgba(0,0,0,.6);
+
+    border:
+        1px solid #7d3cff;
+
     border-radius: 15px;
+
+    backdrop-filter: blur(8px);
+
+    z-index: 50;
+}
+
+
+.painel h3 {
+
+    color: #d4a6ff;
+
+    margin-bottom: 8px;
+}
+
+
+#fase {
+
+    color: gold;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   BOTÃO LOJA
+========================= */
+
+#abrirLoja {
+
+    position: fixed;
+
+    top: 20px;
+
+    right: 20px;
+
+    padding: 12px 18px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #8b5cf6;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    z-index: 60;
+}
+
+
+#abrirLoja:hover {
+
+    background: #a855f7;
+}
+
+
+/* =========================
+   PET
+========================= */
+
+#pet {
+
+    position: fixed;
+
+    bottom: 20px;
+
+    left: 20px;
+
+    width: 180px;
+
+    padding: 15px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(0,0,0,.65);
+
+    border:
+        1px solid #8b5cf6;
+
+    text-align: center;
+
+    z-index: 40;
 
     backdrop-filter: blur(8px);
 }
 
-.painel h3 {
-    color: #d4a6ff;
-    margin-bottom: 8px;
+
+#petEmoji {
+
+    font-size: 55px;
+
+    display: block;
+
+    margin-bottom: 5px;
 }
 
-#fase {
-    color: #ffd700;
+
+#petNome {
+
+    color: #d8b4fe;
+
     font-weight: bold;
+
+    margin-bottom: 5px;
 }
 
-/* CONQUISTA */
+
+#petFala {
+
+    color: #eee;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================
+   CONQUISTA
+========================= */
 
 #conquista {
+
     position: fixed;
+
     top: -150px;
+
     left: 50%;
+
     transform: translateX(-50%);
 
-    background: linear-gradient(135deg,#7b2cff,#ff2ca8);
+    background:
+        linear-gradient(135deg,
+        #7b2cff,
+        #ff2ca8);
 
     padding: 20px 35px;
 
     border-radius: 20px;
 
-    box-shadow: 0 0 30px #9d4edd;
+    box-shadow:
+        0 0 30px #9d4edd;
 
     transition: .5s;
 
-    z-index: 100;
+    z-index: 500;
+
+    text-align: center;
 }
 
+
 #conquista.mostrar {
+
     top: 25px;
 }
 
-/* MODAL DO CÓDIGO */
 
-#modalCodigo {
+/* =========================
+   MODAIS
+========================= */
+
+.modal {
 
     display: none;
 
@@ -179,53 +420,101 @@ h1 {
 
     inset: 0;
 
-    background: rgba(0,0,0,.92);
+    background:
+        rgba(0,0,0,.92);
 
-    z-index: 500;
+    z-index: 400;
 
     align-items: center;
+
     justify-content: center;
 
     padding: 20px;
 }
 
-.caixaCodigo {
 
-    width: min(500px, 100%);
+.caixa {
+
+    width: min(520px,100%);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
 
     background:
-        linear-gradient(145deg,#18002f,#08000f);
+        linear-gradient(145deg,
+        #18002f,
+        #08000f);
 
-    border: 2px solid #a855f7;
+    border:
+        2px solid #a855f7;
 
     border-radius: 25px;
 
-    padding: 35px;
+    padding: 30px;
 
     text-align: center;
 
     box-shadow:
-        0 0 40px #8b2cff,
-        inset 0 0 30px rgba(139,44,255,.2);
+        0 0 40px #8b2cff;
 }
 
-.caixaCodigo h2 {
 
-    font-size: 35px;
+/* =========================
+   DESAFIO
+========================= */
+
+.caixa h2 {
+
+    font-size: 32px;
 
     color: #c084fc;
 
     margin-bottom: 15px;
 }
 
-.caixaCodigo p {
 
-    color: #ddd;
+#perguntaDesafio {
 
-    margin-bottom: 20px;
+    font-size: 23px;
+
+    margin: 20px 0;
+
+    line-height: 1.5;
+}
+
+
+.opcao {
+
+    width: 100%;
+
+    padding: 14px;
+
+    margin: 7px 0;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #291044;
+
+    color: white;
 
     font-size: 18px;
+
+    cursor: pointer;
 }
+
+
+.opcao:hover {
+
+    background: #51217d;
+}
+
+
+/* =========================
+   CÓDIGO
+========================= */
 
 .codigoGrande {
 
@@ -233,14 +522,13 @@ h1 {
 
     letter-spacing: 10px;
 
-    color: #ffd700;
+    color: gold;
 
     font-weight: bold;
 
     margin: 20px 0;
-
-    text-shadow: 0 0 20px gold;
 }
+
 
 #entradaCodigo {
 
@@ -256,7 +544,7 @@ h1 {
 
     color: white;
 
-    font-size: 25px;
+    font-size: 24px;
 
     text-align: center;
 
@@ -265,13 +553,14 @@ h1 {
     letter-spacing: 5px;
 }
 
-#verificar {
 
-    margin-top: 15px;
+#verificar {
 
     width: 100%;
 
     padding: 15px;
+
+    margin-top: 12px;
 
     border: none;
 
@@ -281,51 +570,131 @@ h1 {
 
     color: white;
 
-    font-size: 20px;
+    font-size: 18px;
 
     font-weight: bold;
 
     cursor: pointer;
 }
 
-#verificar:hover {
-
-    background: #a855f7;
-}
 
 #erroCodigo {
 
-    margin-top: 15px;
+    margin-top: 12px;
 
     color: #ff5555;
-
-    min-height: 25px;
 }
 
-/* ANIMAÇÃO DE ERRO */
 
-.erro {
+/* =========================
+   LOJA
+========================= */
 
-    animation: erro .3s;
+.skin {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding: 12px;
+
+    margin: 10px 0;
+
+    border-radius: 15px;
+
+    background: rgba(255,255,255,.07);
 }
 
-@keyframes erro {
 
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-10px); }
-    50% { transform: translateX(10px); }
-    75% { transform: translateX(-10px); }
-    100% { transform: translateX(0); }
+.skinVisual {
 
+    width: 55px;
+
+    height: 55px;
+
+    border-radius: 50%;
+
+    border: 4px solid white;
 }
 
-/* RESPONSIVO */
+
+.skin button {
+
+    padding: 9px 12px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #8b5cf6;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.fechar {
+
+    margin-top: 15px;
+
+    padding: 12px 25px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #333;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   CRÉDITOS
+========================= */
+
+.creditos {
+
+    position: fixed;
+
+    right: 18px;
+
+    bottom: 15px;
+
+    font-size: 15px;
+
+    color: rgba(255,255,255,.7);
+
+    background:
+        rgba(0,0,0,.35);
+
+    padding: 8px 12px;
+
+    border-radius: 10px;
+
+    z-index: 50;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:600px) {
 
     #botao {
 
         width: 210px;
+
         height: 210px;
 
         font-size: 27px;
@@ -334,22 +703,44 @@ h1 {
     .painel {
 
         top: 10px;
+
         left: 10px;
 
         font-size: 13px;
     }
 
-    .codigoGrande {
+    #pet {
 
-        font-size: 35px;
+        width: 150px;
+
+        bottom: 10px;
+
+        left: 10px;
+    }
+
+    #petEmoji {
+
+        font-size: 40px;
+    }
+
+    .creditos {
+
+        right: 10px;
+
+        bottom: 10px;
+
+        font-size: 11px;
     }
 
 }
 
 </style>
+
 </head>
 
+
 <body>
+
 
 <!-- ESTRELAS -->
 
@@ -360,6 +751,7 @@ h1 {
 <div class="star" style="left:70%;top:30%"></div>
 <div class="star" style="left:85%;top:65%"></div>
 <div class="star" style="left:95%;top:15%"></div>
+
 
 <!-- PAINEL -->
 
@@ -382,19 +774,50 @@ h1 {
         <span id="fase">1</span>
     </div>
 
+    <div>
+        💰
+        <span id="painelMoedas">0</span>
+    </div>
+
 </div>
+
+
+<!-- LOJA -->
+
+<button id="abrirLoja">
+    🛒 LOJA
+</button>
+
+
+<!-- PET -->
+
+<div id="pet">
+
+    <span id="petEmoji">🐶</span>
+
+    <div id="petNome">
+        Bob
+    </div>
+
+    <div id="petFala">
+        Vamos! Você consegue!
+    </div>
+
+</div>
+
 
 <!-- CONQUISTA -->
 
 <div id="conquista">
 
-    🏆 <strong>DESBLOQUEADO!</strong>
+    🏆 <strong>CONQUISTA!</strong>
 
     <br>
 
     <span id="textoConquista"></span>
 
 </div>
+
 
 <!-- JOGO -->
 
@@ -403,14 +826,18 @@ h1 {
     <h1>NÃO CLIQUE!</h1>
 
     <div class="subtitle">
+
         Você sabe que deveria parar...
+
     </div>
+
 
     <button id="botao">
 
         NÃO<br>CLIQUE
 
     </button>
+
 
     <div class="contador">
 
@@ -423,7 +850,13 @@ h1 {
         Meta:
         <span id="meta">100</span>
 
+        <br>
+
+        💰 Moedas:
+        <span id="moedas">0</span>
+
     </div>
+
 
     <div id="mensagem">
 
@@ -433,36 +866,79 @@ h1 {
 
 </div>
 
-<!-- MODAL DO CÓDIGO -->
 
-<div id="modalCodigo">
+<!-- =========================
+     MODAL DESAFIO
+========================= -->
 
-    <div class="caixaCodigo">
+<div id="modalDesafio" class="modal">
 
-        <h2>🔐 CÓDIGO DESBLOQUEADO</h2>
+    <div class="caixa">
+
+        <h2>
+            🧠 DESAFIO!
+        </h2>
 
         <p>
-            Você chegou ao limite desta fase!
+            Você chegou a 50 cliques!
             <br>
-            Digite o código mostrado abaixo para continuar.
+            Responda corretamente para continuar.
         </p>
+
+        <div id="perguntaDesafio">
+
+            Pergunta
+        </div>
+
+
+        <div id="opcoesDesafio"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MODAL CÓDIGO
+========================= -->
+
+<div id="modalCodigo" class="modal">
+
+    <div class="caixa">
+
+        <h2>
+            🔐 CÓDIGO DESBLOQUEADO
+        </h2>
+
+        <p>
+            Digite o código para liberar
+            os próximos 100 cliques!
+        </p>
+
 
         <div
             id="codigoGrande"
             class="codigoGrande">
+
             0000
+
         </div>
+
 
         <input
             id="entradaCodigo"
             type="text"
             maxlength="4"
-            placeholder="DIGITE O CÓDIGO"
+            placeholder="CÓDIGO"
             autocomplete="off">
 
+
         <button id="verificar">
+
             🔓 DESBLOQUEAR
+
         </button>
+
 
         <div id="erroCodigo"></div>
 
@@ -470,11 +946,173 @@ h1 {
 
 </div>
 
+
+<!-- =========================
+     LOJA
+========================= -->
+
+<div id="modalLoja" class="modal">
+
+    <div class="caixa">
+
+        <h2>
+            🛒 LOJA DE SKINS
+        </h2>
+
+        <p>
+            💰 Você tem
+            <strong id="moedasLoja">0</strong>
+            moedas.
+        </p>
+
+
+        <div class="skin">
+
+            <div>
+
+                🔴 Clássica
+
+            </div>
+
+            <div
+                class="skinVisual"
+                style="background:#ff3030">
+
+            </div>
+
+            <button
+                onclick="comprarSkin('classica',0)">
+
+                Usar
+
+            </button>
+
+        </div>
+
+
+        <div class="skin">
+
+            <div>
+
+                🔵 Azul
+
+            </div>
+
+            <div
+                class="skinVisual"
+                style="background:#168cff">
+
+            </div>
+
+            <button
+                onclick="comprarSkin('azul',50)">
+
+                50 💰
+
+            </button>
+
+        </div>
+
+
+        <div class="skin">
+
+            <div>
+
+                🟢 Verde
+
+            </div>
+
+            <div
+                class="skinVisual"
+                style="background:#20c970">
+
+            </div>
+
+            <button
+                onclick="comprarSkin('verde',100)">
+
+                100 💰
+
+            </button>
+
+        </div>
+
+
+        <div class="skin">
+
+            <div>
+
+                🟣 Roxa
+
+            </div>
+
+            <div
+                class="skinVisual"
+                style="background:#a855f7">
+
+            </div>
+
+            <button
+                onclick="comprarSkin('roxa',150)">
+
+                150 💰
+
+            </button>
+
+        </div>
+
+
+        <div class="skin">
+
+            <div>
+
+                🟡 Dourada
+
+            </div>
+
+            <div
+                class="skinVisual"
+                style="background:gold">
+
+            </div>
+
+            <button
+                onclick="comprarSkin('dourada',300)">
+
+                300 💰
+
+            </button>
+
+        </div>
+
+
+        <button
+            class="fechar"
+            onclick="fecharLoja()">
+
+            Fechar
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- CRÉDITOS -->
+
+<div class="creditos">
+
+    Desenvolvido por: Anna Jullya
+
+</div>
+
+
 <script>
 
-/* ==========================
-   CONFIGURAÇÕES
-========================== */
+/* =========================================
+   PROGRESSO
+========================================= */
 
 let cliques =
     Number(localStorage.getItem("cliques")) || 0;
@@ -485,14 +1123,46 @@ let meta =
 let fase =
     Number(localStorage.getItem("fase")) || 1;
 
+let moedas =
+    Number(localStorage.getItem("moedas")) || 0;
+
+
+/* =========================================
+   SKINS
+========================================= */
+
+let skinsCompradas =
+    JSON.parse(
+        localStorage.getItem("skinsCompradas")
+    ) || ["classica"];
+
+
+let skinAtual =
+    localStorage.getItem("skinAtual") ||
+    "classica";
+
+
+/* =========================================
+   PET
+========================================= */
+
+let petEmoji =
+    localStorage.getItem("petEmoji") ||
+    "🐶";
+
+
+/* =========================================
+   CÓDIGO
+========================================= */
+
 let codigoAtual = "";
 
-let codigoGerado = false;
+let ultimoDesafio = 0;
 
 
-/* ==========================
+/* =========================================
    ELEMENTOS
-========================== */
+========================================= */
 
 const botao =
     document.getElementById("botao");
@@ -512,8 +1182,35 @@ const painelMeta =
 const faseElemento =
     document.getElementById("fase");
 
+const moedasElemento =
+    document.getElementById("moedas");
+
+const painelMoedas =
+    document.getElementById("painelMoedas");
+
 const mensagem =
     document.getElementById("mensagem");
+
+const petEmojiElemento =
+    document.getElementById("petEmoji");
+
+const petFala =
+    document.getElementById("petFala");
+
+const conquista =
+    document.getElementById("conquista");
+
+const textoConquista =
+    document.getElementById("textoConquista");
+
+const modalDesafio =
+    document.getElementById("modalDesafio");
+
+const perguntaDesafio =
+    document.getElementById("perguntaDesafio");
+
+const opcoesDesafio =
+    document.getElementById("opcoesDesafio");
 
 const modalCodigo =
     document.getElementById("modalCodigo");
@@ -524,34 +1221,83 @@ const codigoGrande =
 const entradaCodigo =
     document.getElementById("entradaCodigo");
 
-const verificar =
-    document.getElementById("verificar");
-
 const erroCodigo =
     document.getElementById("erroCodigo");
 
-const conquista =
-    document.getElementById("conquista");
+const modalLoja =
+    document.getElementById("modalLoja");
 
-const textoConquista =
-    document.getElementById("textoConquista");
+const moedasLoja =
+    document.getElementById("moedasLoja");
 
 
-/* ==========================
+/* =========================================
+   PET
+========================================= */
+
+petEmojiElemento.textContent =
+    petEmoji;
+
+
+/* =========================================
+   FALAS DO PET
+========================================= */
+
+const falasPet = [
+
+    "🐶 Você consegue!",
+
+    "🔥 Continua clicando!",
+
+    "😎 Eu acredito em você!",
+
+    "😂 Você ainda está clicando?!",
+
+    "🚀 Vamos chegar nos 100!",
+
+    "💰 Mais cliques = mais moedas!",
+
+    "🧠 Cuidado com os desafios!",
+
+    "👀 Eu sei que você vai clicar.",
+
+    "🏆 Você está indo muito bem!",
+
+    "😈 Não pare agora..."
+
+];
+
+
+/* =========================================
    ATUALIZAR
-========================== */
+========================================= */
 
 function atualizar() {
 
-    numero.textContent = cliques;
+    numero.textContent =
+        cliques;
 
-    painelCliques.textContent = cliques;
+    painelCliques.textContent =
+        cliques;
 
-    metaElemento.textContent = meta;
+    metaElemento.textContent =
+        meta;
 
-    painelMeta.textContent = meta;
+    painelMeta.textContent =
+        meta;
 
-    faseElemento.textContent = fase;
+    faseElemento.textContent =
+        fase;
+
+    moedasElemento.textContent =
+        moedas;
+
+    painelMoedas.textContent =
+        moedas;
+
+    moedasLoja.textContent =
+        moedas;
+
 
     localStorage.setItem(
         "cliques",
@@ -567,58 +1313,28 @@ function atualizar() {
         "fase",
         fase
     );
-}
 
+    localStorage.setItem(
+        "moedas",
+        moedas
+    );
 
-/* ==========================
-   GERAR CÓDIGO
-========================== */
+    localStorage.setItem(
+        "skinsCompradas",
+        JSON.stringify(skinsCompradas)
+    );
 
-function gerarCodigo() {
-
-    /*
-       Gera um código de 4 números.
-    */
-
-    codigoAtual =
-        Math.floor(
-            1000 + Math.random() * 9000
-        ).toString();
-
-    codigoGrande.textContent =
-        codigoAtual;
-
-    codigoGerado = true;
+    localStorage.setItem(
+        "skinAtual",
+        skinAtual
+    );
 
 }
 
 
-/* ==========================
-   ABRIR CÓDIGO
-========================== */
-
-function abrirCodigo() {
-
-    gerarCodigo();
-
-    modalCodigo.style.display = "flex";
-
-    entradaCodigo.value = "";
-
-    erroCodigo.textContent = "";
-
-    setTimeout(() => {
-
-        entradaCodigo.focus();
-
-    }, 100);
-
-}
-
-
-/* ==========================
+/* =========================================
    CONQUISTA
-========================== */
+========================================= */
 
 function mostrarConquista(texto) {
 
@@ -639,56 +1355,229 @@ function mostrarConquista(texto) {
 }
 
 
-/* ==========================
-   MENSAGENS
-========================== */
+/* =========================================
+   MUDAR PET
+========================================= */
 
-const mensagens = [
+function mudarFalaPet() {
 
-    "Eu avisei para não clicar.",
+    let indice =
+        Math.floor(
+            Math.random() *
+            falasPet.length
+        );
 
-    "Você realmente clicou...",
+    petFala.textContent =
+        falasPet[indice];
+}
 
-    "Por quê?",
 
-    "Você não sabe obedecer? 😂",
+/* =========================================
+   PERGUNTAS
+========================================= */
 
-    "Esse botão não vai fazer nada.",
+const desafios = [
 
-    "Pare enquanto ainda pode.",
+    {
+        pergunta:
+            "Quanto é 5 + 5?",
 
-    "Isso está ficando estranho...",
+        opcoes:
+            ["8", "10", "15", "55"],
 
-    "Você está fazendo isso de propósito.",
+        resposta:
+            "10"
+    },
 
-    "EU DISSE NÃO!",
+    {
+        pergunta:
+            "Qual planeta é conhecido como planeta vermelho?",
 
-    "Último aviso!",
+        opcoes:
+            ["Marte", "Júpiter", "Terra", "Saturno"],
 
-    "Você é impossível.",
+        resposta:
+            "Marte"
+    },
 
-    "O botão está com medo.",
+    {
+        pergunta:
+            "Quantos lados tem um triângulo?",
 
-    "Você despertou alguma coisa...",
+        opcoes:
+            ["2", "3", "4", "5"],
 
-    "Continue se tiver coragem.",
+        resposta:
+            "3"
+    },
 
-    "Talvez exista um segredo aqui."
+    {
+        pergunta:
+            "Qual é a capital do Brasil?",
+
+        opcoes:
+            ["São Paulo", "Brasília", "Rio de Janeiro", "Salvador"],
+
+        resposta:
+            "Brasília"
+    },
+
+    {
+        pergunta:
+            "Quanto é 10 × 2?",
+
+        opcoes:
+            ["12", "20", "22", "30"],
+
+        resposta:
+            "20"
+    },
+
+    {
+        pergunta:
+            "Qual animal é conhecido como o rei da selva?",
+
+        opcoes:
+            ["Tigre", "Leão", "Elefante", "Lobo"],
+
+        resposta:
+            "Leão"
+    }
 
 ];
 
 
-/* ==========================
-   CLIQUE
-========================== */
+/* =========================================
+   ABRIR DESAFIO
+========================================= */
+
+function abrirDesafio() {
+
+    let desafio =
+        desafios[
+            Math.floor(
+                Math.random() *
+                desafios.length
+            )
+        ];
+
+
+    perguntaDesafio.textContent =
+        desafio.pergunta;
+
+
+    opcoesDesafio.innerHTML = "";
+
+
+    desafio.opcoes.forEach(
+        opcao => {
+
+            let botaoOpcao =
+                document.createElement("button");
+
+            botaoOpcao.className =
+                "opcao";
+
+            botaoOpcao.textContent =
+                opcao;
+
+
+            botaoOpcao.onclick =
+                function() {
+
+                    responderDesafio(
+                        opcao,
+                        desafio.resposta
+                    );
+
+                };
+
+
+            opcoesDesafio.appendChild(
+                botaoOpcao
+            );
+
+        }
+    );
+
+
+    modalDesafio.style.display =
+        "flex";
+}
+
+
+/* =========================================
+   RESPONDER DESAFIO
+========================================= */
+
+function responderDesafio(
+    resposta,
+    correta
+) {
+
+    if (resposta === correta) {
+
+        modalDesafio.style.display =
+            "none";
+
+
+        mensagem.textContent =
+            "🎉 Acertou! O pet está orgulhoso!";
+
+
+        mostrarConquista(
+            "🧠 DESAFIO COMPLETADO!"
+        );
+
+
+        moedas += 25;
+
+
+        atualizar();
+
+
+    } else {
+
+        /*
+           ERROU:
+           volta os cliques para 0.
+        */
+
+        modalDesafio.style.display =
+            "none";
+
+
+        cliques = 0;
+
+
+        mensagem.textContent =
+            "❌ ERROU! Seus cliques voltaram para 0!";
+
+
+        mostrarConquista(
+            "💀 VOCÊ CAIU NO DESAFIO!"
+        );
+
+
+        atualizar();
+
+    }
+
+}
+
+
+/* =========================================
+   CLIQUE PRINCIPAL
+========================================= */
 
 botao.addEventListener(
     "click",
     function() {
 
+
         /*
-           Se já chegou à meta,
-           não permite clicar mais.
+           Impede clique enquanto
+           precisa resolver código.
         */
 
         if (cliques >= meta) {
@@ -696,105 +1585,101 @@ botao.addEventListener(
             abrirCodigo();
 
             return;
-
         }
 
 
         cliques++;
 
 
+        /*
+           Cada clique dá uma moeda.
+        */
+
+        moedas++;
+
+
         atualizar();
 
 
-        /* MENSAGEM */
+        /*
+           Mensagem
+        */
 
-        let indice =
-            Math.min(
-                Math.floor(cliques / 7),
-                mensagens.length - 1
-            );
+        if (cliques % 10 === 0) {
 
-        mensagem.textContent =
-            mensagens[indice];
-
-
-        /* =====================
-           CONQUISTAS
-        ===================== */
-
-        if (cliques === 1) {
-
-            mostrarConquista(
-                "Primeiro clique... 😐"
-            );
+            mensagem.textContent =
+                "🔥 " +
+                cliques +
+                " cliques!";
 
         }
+
+
+        /*
+           Pet fala
+        */
+
+        if (cliques % 15 === 0) {
+
+            mudarFalaPet();
+
+        }
+
+
+        /*
+           Conquistas
+        */
 
         if (cliques === 10) {
 
             mostrarConquista(
-                "10 CLIQUES! 😂"
+                "🔥 10 CLIQUES!"
             );
 
         }
+
 
         if (cliques === 25) {
 
             mostrarConquista(
-                "Persistência desbloqueada! 🔥"
-            );
-
-        }
-
-        if (cliques === 50) {
-
-            mostrarConquista(
-                "50 CLIQUES! 🤯"
-            );
-
-        }
-
-        if (cliques === 75) {
-
-            mostrarConquista(
-                "O botão está pedindo socorro! 🚨"
+                "😈 Você não sabe parar!"
             );
 
         }
 
 
-        /* =====================
-           EFEITO
-        ===================== */
+        /*
+           DESAFIO A CADA 50
+        */
 
-        if (cliques % 10 === 0) {
+        if (
+            cliques % 50 === 0 &&
+            cliques < meta
+        ) {
 
-            botao.style.transform =
-                "rotate(" +
-                (Math.random() * 20 - 10) +
-                "deg)";
+            abrirDesafio();
 
         }
 
 
-        /* =====================
-           CHEGOU À META
-        ===================== */
+        /*
+           META DOS 100
+        */
 
         if (cliques >= meta) {
 
             mensagem.textContent =
-                "🔐 Você chegou ao limite! Descubra o código...";
+                "🔐 Chegou na meta!";
 
             mostrarConquista(
                 "🔐 CÓDIGO DESBLOQUEADO!"
             );
 
-            setTimeout(() => {
 
-                abrirCodigo();
-
-            }, 700);
+            setTimeout(
+                abrirCodigo,
+                700
+            );
 
         }
 
@@ -802,11 +1687,57 @@ botao.addEventListener(
 );
 
 
-/* ==========================
-   VERIFICAR CÓDIGO
-========================== */
+/* =========================================
+   GERAR CÓDIGO
+========================================= */
 
-verificar.addEventListener(
+function gerarCodigo() {
+
+    codigoAtual =
+        Math.floor(
+            1000 +
+            Math.random() * 9000
+        ).toString();
+
+
+    codigoGrande.textContent =
+        codigoAtual;
+
+}
+
+
+/* =========================================
+   ABRIR CÓDIGO
+========================================= */
+
+function abrirCodigo() {
+
+    gerarCodigo();
+
+    modalCodigo.style.display =
+        "flex";
+
+    entradaCodigo.value = "";
+
+    erroCodigo.textContent =
+        "";
+
+    setTimeout(() => {
+
+        entradaCodigo.focus();
+
+    }, 100);
+
+}
+
+
+/* =========================================
+   VERIFICAR CÓDIGO
+========================================= */
+
+document
+.getElementById("verificar")
+.addEventListener(
     "click",
     verificarCodigo
 );
@@ -834,16 +1765,12 @@ function verificarCodigo() {
 
     if (digitado === codigoAtual) {
 
-        /*
-           ACERTOU!
-        */
-
         modalCodigo.style.display =
             "none";
 
 
         /*
-           Libera mais 100 cliques.
+           LIBERA +100
         */
 
         meta += 100;
@@ -852,33 +1779,21 @@ function verificarCodigo() {
 
 
         /*
-           Mensagem especial.
+           BÔNUS
         */
 
+        moedas += 100;
+
+
         mensagem.textContent =
-            "🔓 Código correto! Mais 100 cliques foram liberados!";
+            "🔓 Código correto! +100 cliques liberados!";
 
 
         mostrarConquista(
-            "🔓 FASE " +
+            "👑 FASE " +
             fase +
             " DESBLOQUEADA!"
         );
-
-
-        /*
-           Pequena animação.
-        */
-
-        botao.style.transform =
-            "scale(1.2)";
-
-        setTimeout(() => {
-
-            botao.style.transform =
-                "scale(1)";
-
-        }, 400);
 
 
         atualizar();
@@ -886,33 +1801,188 @@ function verificarCodigo() {
 
     } else {
 
-        /*
-           ERROU!
-        */
-
         erroCodigo.textContent =
-            "❌ Código incorreto! Tente novamente.";
-
-        entradaCodigo.classList.add(
-            "erro"
-        );
-
-        setTimeout(() => {
-
-            entradaCodigo.classList.remove(
-                "erro"
-            );
-
-        }, 400);
+            "❌ Código incorreto!";
 
     }
 
 }
 
 
-/* ==========================
+/* =========================================
+   LOJA
+========================================= */
+
+document
+.getElementById("abrirLoja")
+.addEventListener(
+    "click",
+    function() {
+
+        moedasLoja.textContent =
+            moedas;
+
+        modalLoja.style.display =
+            "flex";
+
+    }
+);
+
+
+/* =========================================
+   FECHAR LOJA
+========================================= */
+
+function fecharLoja() {
+
+    modalLoja.style.display =
+        "none";
+
+}
+
+
+/* =========================================
+   COMPRAR SKIN
+========================================= */
+
+function comprarSkin(
+    nome,
+    preco
+) {
+
+    /*
+       Se já possui
+    */
+
+    if (
+        skinsCompradas.includes(nome)
+    ) {
+
+        skinAtual = nome;
+
+        aplicarSkin();
+
+        atualizar();
+
+        mensagem.textContent =
+            "🎨 Skin equipada!";
+
+        return;
+
+    }
+
+
+    /*
+       Verificar moedas
+    */
+
+    if (moedas < preco) {
+
+        alert(
+            "💰 Você não tem moedas suficientes!"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Comprar
+    */
+
+    moedas -= preco;
+
+
+    skinsCompradas.push(
+        nome
+    );
+
+
+    skinAtual = nome;
+
+
+    aplicarSkin();
+
+
+    atualizar();
+
+
+    mensagem.textContent =
+        "🎨 Skin comprada e equipada!";
+
+}
+
+
+/* =========================================
+   APLICAR SKIN
+========================================= */
+
+function aplicarSkin() {
+
+    if (skinAtual === "classica") {
+
+        botao.style.background =
+            "radial-gradient(circle,#ff3030,#900000)";
+
+        botao.style.borderColor =
+            "#ff7777";
+
+    }
+
+
+    if (skinAtual === "azul") {
+
+        botao.style.background =
+            "radial-gradient(circle,#168cff,#003d91)";
+
+        botao.style.borderColor =
+            "#65b5ff";
+
+    }
+
+
+    if (skinAtual === "verde") {
+
+        botao.style.background =
+            "radial-gradient(circle,#20c970,#056b38)";
+
+        botao.style.borderColor =
+            "#6affad";
+
+    }
+
+
+    if (skinAtual === "roxa") {
+
+        botao.style.background =
+            "radial-gradient(circle,#a855f7,#4c1d95)";
+
+        botao.style.borderColor =
+            "#d8b4fe";
+
+    }
+
+
+    if (skinAtual === "dourada") {
+
+        botao.style.background =
+            "radial-gradient(circle,#ffe066,#a66a00)";
+
+        botao.style.borderColor =
+            "gold";
+
+        botao.style.boxShadow =
+            "0 0 20px gold, 0 0 50px rgba(255,215,0,.7)";
+
+    }
+
+}
+
+
+/* =========================================
    TECLA ESPAÇO
-========================== */
+========================================= */
 
 document.addEventListener(
     "keydown",
@@ -920,7 +1990,9 @@ document.addEventListener(
 
         if (
             event.code === "Space" &&
-            modalCodigo.style.display !== "flex"
+            modalCodigo.style.display !== "flex" &&
+            modalDesafio.style.display !== "flex" &&
+            modalLoja.style.display !== "flex"
         ) {
 
             event.preventDefault();
@@ -933,54 +2005,19 @@ document.addEventListener(
 );
 
 
-/* ==========================
-   INICIAR
-========================== */
+/* =========================================
+   INICIALIZAR
+========================================= */
+
+aplicarSkin();
 
 atualizar();
 
-
-/*
-   Se o jogador fechar e voltar
-   exatamente quando deveria
-   digitar um código, mostramos
-   novamente o código.
-*/
-
-if (cliques >= meta) {
-
-    setTimeout(() => {
-
-        abrirCodigo();
-
-    }, 500);
-
-}
+mudarFalaPet();
 
 </script>
 
-```html
-<div class="creditos">
-    Desenvolvido por: Anna Jullya
-</div>
-```
+</body>
 
-E dentro do `<style>`, adicione:
-
-```css
-.creditos {
-    position: fixed;
-    right: 18px;
-    bottom: 15px;
-    font-size: 15px;
-    color: rgba(255,255,255,0.7);
-    background: rgba(0,0,0,0.35);
-    padding: 8px 12px;
-    border-radius: 10px;
-    backdrop-filter: blur(5px);
-    z-index: 50;
-}
-```
-/body>
 </html>
 ```
