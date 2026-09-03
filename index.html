@@ -8,6 +8,7 @@
 <title>NÃO CLIQUE!</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -17,25 +18,12 @@
 body {
     min-height: 100vh;
     font-family: Arial, sans-serif;
-    background: radial-gradient(circle at center, #35106b, #090014 70%);
+    background: radial-gradient(circle, #35106b, #090014 75%);
     color: white;
     overflow: hidden;
-    transition: 0.5s;
 }
 
-body.treme {
-    animation: tremor 0.12s infinite;
-}
-
-@keyframes tremor {
-    0% { transform: translate(0, 0); }
-    25% { transform: translate(4px, -3px); }
-    50% { transform: translate(-4px, 3px); }
-    75% { transform: translate(3px, 4px); }
-    100% { transform: translate(0, 0); }
-}
-
-/* ESTRELAS */
+/* FUNDO */
 
 .star {
     position: fixed;
@@ -43,63 +31,57 @@ body.treme {
     height: 3px;
     background: white;
     border-radius: 50%;
-    opacity: 0.7;
-    animation: piscar 2s infinite alternate;
+    opacity: .7;
 }
-
-@keyframes piscar {
-    from { opacity: 0.2; }
-    to { opacity: 1; }
-}
-
-/* CONTAINER */
 
 .container {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     text-align: center;
     padding: 20px;
 }
 
 h1 {
-    font-size: clamp(40px, 8vw, 90px);
-    color: #ff2b2b;
+    font-size: clamp(45px, 8vw, 90px);
+    color: #ff3030;
     text-shadow:
         0 0 10px red,
         0 0 30px red,
-        0 0 60px #ff0000;
+        0 0 60px red;
     margin-bottom: 10px;
 }
 
 .subtitle {
-    font-size: 20px;
     color: #ddd;
+    font-size: 20px;
     margin-bottom: 35px;
 }
 
 /* BOTÃO */
 
 #botao {
-    position: relative;
     width: 260px;
     height: 260px;
     border-radius: 50%;
     border: 8px solid #ff7777;
-    background: radial-gradient(circle, #ff3030, #9e0000);
+
+    background: radial-gradient(circle, #ff3030, #900000);
+
     color: white;
     font-size: 32px;
     font-weight: bold;
+
     cursor: pointer;
 
     box-shadow:
         0 0 20px red,
-        0 0 50px rgba(255,0,0,0.7),
-        inset 0 0 30px rgba(0,0,0,0.5);
+        0 0 50px rgba(255,0,0,.7),
+        inset 0 0 30px rgba(0,0,0,.5);
 
-    transition: transform 0.2s, left 0.3s, top 0.3s;
+    transition: .2s;
 }
 
 #botao:hover {
@@ -107,13 +89,13 @@ h1 {
 }
 
 #botao:active {
-    transform: scale(0.92);
+    transform: scale(.92);
 }
 
 /* CONTADOR */
 
 .contador {
-    margin-top: 35px;
+    margin-top: 30px;
     font-size: 25px;
 }
 
@@ -122,14 +104,18 @@ h1 {
     font-weight: bold;
 }
 
+#meta {
+    color: #ffd700;
+    font-weight: bold;
+}
+
 /* MENSAGEM */
 
 #mensagem {
     margin-top: 20px;
     min-height: 35px;
-    font-size: 22px;
+    font-size: 21px;
     color: #ffe66d;
-    font-weight: bold;
 }
 
 /* PAINEL */
@@ -138,16 +124,24 @@ h1 {
     position: fixed;
     top: 20px;
     left: 20px;
+
     padding: 15px 20px;
-    background: rgba(0,0,0,0.55);
+
+    background: rgba(0,0,0,.6);
     border: 1px solid #7d3cff;
     border-radius: 15px;
+
     backdrop-filter: blur(8px);
 }
 
 .painel h3 {
-    margin-bottom: 8px;
     color: #d4a6ff;
+    margin-bottom: 8px;
+}
+
+#fase {
+    color: #ffd700;
+    font-weight: bold;
 }
 
 /* CONQUISTA */
@@ -157,11 +151,17 @@ h1 {
     top: -150px;
     left: 50%;
     transform: translateX(-50%);
-    background: linear-gradient(135deg, #7b2cff, #ff2ca8);
+
+    background: linear-gradient(135deg,#7b2cff,#ff2ca8);
+
     padding: 20px 35px;
+
     border-radius: 20px;
+
     box-shadow: 0 0 30px #9d4edd;
-    transition: top 0.5s;
+
+    transition: .5s;
+
     z-index: 100;
 }
 
@@ -169,84 +169,190 @@ h1 {
     top: 25px;
 }
 
-/* FINAL */
+/* MODAL DO CÓDIGO */
 
-#final {
+#modalCodigo {
+
     display: none;
+
     position: fixed;
+
     inset: 0;
-    background: rgba(0,0,0,0.94);
-    z-index: 200;
+
+    background: rgba(0,0,0,.92);
+
+    z-index: 500;
+
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+
+    padding: 20px;
+}
+
+.caixaCodigo {
+
+    width: min(500px, 100%);
+
+    background:
+        linear-gradient(145deg,#18002f,#08000f);
+
+    border: 2px solid #a855f7;
+
+    border-radius: 25px;
+
+    padding: 35px;
+
     text-align: center;
-    padding: 30px;
+
+    box-shadow:
+        0 0 40px #8b2cff,
+        inset 0 0 30px rgba(139,44,255,.2);
 }
 
-#final h2 {
-    font-size: clamp(45px, 9vw, 100px);
-    color: gold;
-    text-shadow: 0 0 30px gold;
+.caixaCodigo h2 {
+
+    font-size: 35px;
+
+    color: #c084fc;
+
+    margin-bottom: 15px;
+}
+
+.caixaCodigo p {
+
+    color: #ddd;
+
     margin-bottom: 20px;
-}
 
-#final p {
-    font-size: 22px;
-    max-width: 600px;
-    line-height: 1.6;
-}
-
-#reiniciar {
-    margin-top: 30px;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 12px;
-    background: white;
-    color: black;
     font-size: 18px;
+}
+
+.codigoGrande {
+
+    font-size: 45px;
+
+    letter-spacing: 10px;
+
+    color: #ffd700;
+
     font-weight: bold;
+
+    margin: 20px 0;
+
+    text-shadow: 0 0 20px gold;
+}
+
+#entradaCodigo {
+
+    width: 100%;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    border: 2px solid #8b5cf6;
+
+    background: #100018;
+
+    color: white;
+
+    font-size: 25px;
+
+    text-align: center;
+
+    outline: none;
+
+    letter-spacing: 5px;
+}
+
+#verificar {
+
+    margin-top: 15px;
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #8b5cf6;
+
+    color: white;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
     cursor: pointer;
 }
 
-#reiniciar:hover {
-    background: #ddd;
+#verificar:hover {
+
+    background: #a855f7;
 }
 
-/* CÓDIGO */
+#erroCodigo {
 
-.codigo {
     margin-top: 15px;
-    font-size: 16px;
-    color: #aaa;
+
+    color: #ff5555;
+
+    min-height: 25px;
 }
 
-/* MOBILE */
+/* ANIMAÇÃO DE ERRO */
 
-@media (max-width: 600px) {
+.erro {
+
+    animation: erro .3s;
+}
+
+@keyframes erro {
+
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+
+}
+
+/* RESPONSIVO */
+
+@media(max-width:600px) {
 
     #botao {
+
         width: 210px;
         height: 210px;
-        font-size: 26px;
+
+        font-size: 27px;
     }
 
     .painel {
+
         top: 10px;
         left: 10px;
+
         font-size: 13px;
     }
 
-    .subtitle {
-        font-size: 16px;
+    .codigoGrande {
+
+        font-size: 35px;
     }
+
 }
+
 </style>
 </head>
 
 <body>
 
 <!-- ESTRELAS -->
+
 <div class="star" style="left:10%;top:15%"></div>
 <div class="star" style="left:25%;top:70%"></div>
 <div class="star" style="left:40%;top:20%"></div>
@@ -258,17 +364,36 @@ h1 {
 <!-- PAINEL -->
 
 <div class="painel">
-    <h3>🏆 Conquistas</h3>
-    <div>Cliques: <span id="painelCliques">0</span></div>
-    <div>Recorde: <span id="recorde">0</span></div>
+
+    <h3>🏆 PROGRESSO</h3>
+
+    <div>
+        Cliques:
+        <span id="painelCliques">0</span>
+    </div>
+
+    <div>
+        Próximo:
+        <span id="painelMeta">100</span>
+    </div>
+
+    <div>
+        Fase:
+        <span id="fase">1</span>
+    </div>
+
 </div>
 
 <!-- CONQUISTA -->
 
 <div id="conquista">
-    🏆 <strong>CONQUISTA!</strong>
+
+    🏆 <strong>DESBLOQUEADO!</strong>
+
     <br>
+
     <span id="textoConquista"></span>
+
 </div>
 
 <!-- JOGO -->
@@ -278,331 +403,584 @@ h1 {
     <h1>NÃO CLIQUE!</h1>
 
     <div class="subtitle">
-        Sério. Não clique nesse botão.
+        Você sabe que deveria parar...
     </div>
 
     <button id="botao">
+
         NÃO<br>CLIQUE
+
     </button>
 
     <div class="contador">
-        Você clicou <span id="numero">0</span> vezes.
+
+        Você clicou
+        <span id="numero">0</span>
+        vezes.
+
+        <br>
+
+        Meta:
+        <span id="meta">100</span>
+
     </div>
 
     <div id="mensagem">
-        Eu estou falando sério...
-    </div>
 
-    <div class="codigo">
-        🤫 Talvez exista um segredo...
+        Eu estou falando sério...
+
     </div>
 
 </div>
 
-<!-- FINAL -->
+<!-- MODAL DO CÓDIGO -->
 
-<div id="final">
+<div id="modalCodigo">
 
-    <h2>👑 VOCÊ CONSEGUIU!</h2>
+    <div class="caixaCodigo">
 
-    <p>
-        Parabéns, você desbloqueou o final secreto.
-        <br><br>
-        Você clicou tantas vezes que o botão desistiu de tentar te impedir.
-        😂
-        <br><br>
-        Código secreto: <strong>CLIQUEI_DEMAIS</strong>
-    </p>
+        <h2>🔐 CÓDIGO DESBLOQUEADO</h2>
 
-    <button id="reiniciar">
-        🔄 Jogar novamente
-    </button>
+        <p>
+            Você chegou ao limite desta fase!
+            <br>
+            Digite o código mostrado abaixo para continuar.
+        </p>
+
+        <div
+            id="codigoGrande"
+            class="codigoGrande">
+            0000
+        </div>
+
+        <input
+            id="entradaCodigo"
+            type="text"
+            maxlength="4"
+            placeholder="DIGITE O CÓDIGO"
+            autocomplete="off">
+
+        <button id="verificar">
+            🔓 DESBLOQUEAR
+        </button>
+
+        <div id="erroCodigo"></div>
+
+    </div>
 
 </div>
 
 <script>
 
-/* =========================
-   VARIÁVEIS
-========================= */
+/* ==========================
+   CONFIGURAÇÕES
+========================== */
 
-let cliques = Number(localStorage.getItem("cliques")) || 0;
-let recorde = Number(localStorage.getItem("recorde")) || 0;
+let cliques =
+    Number(localStorage.getItem("cliques")) || 0;
 
-const botao = document.getElementById("botao");
-const numero = document.getElementById("numero");
-const mensagem = document.getElementById("mensagem");
-const painelCliques = document.getElementById("painelCliques");
-const recordeElemento = document.getElementById("recorde");
-const conquista = document.getElementById("conquista");
-const textoConquista = document.getElementById("textoConquista");
-const final = document.getElementById("final");
-const reiniciar = document.getElementById("reiniciar");
+let meta =
+    Number(localStorage.getItem("meta")) || 100;
 
+let fase =
+    Number(localStorage.getItem("fase")) || 1;
 
-/* =========================
-   MENSAGENS
-========================= */
+let codigoAtual = "";
 
-const mensagens = [
-    "Eu avisei para não clicar.",
-    "Você realmente clicou...",
-    "Por quê?",
-    "Você não sabe obedecer? 😂",
-    "Esse botão não vai fazer nada.",
-    "Pare enquanto ainda pode.",
-    "Isso está ficando estranho...",
-    "Você está fazendo isso de propósito.",
-    "EU DISSE NÃO!",
-    "Último aviso!",
-    "Você é impossível.",
-    "O botão está começando a ficar com medo.",
-    "Pare de clicar!!!",
-    "Isso não deveria estar acontecendo...",
-    "Você despertou alguma coisa..."
-];
+let codigoGerado = false;
 
 
-/* =========================
-   ATUALIZAR INTERFACE
-========================= */
+/* ==========================
+   ELEMENTOS
+========================== */
+
+const botao =
+    document.getElementById("botao");
+
+const numero =
+    document.getElementById("numero");
+
+const metaElemento =
+    document.getElementById("meta");
+
+const painelCliques =
+    document.getElementById("painelCliques");
+
+const painelMeta =
+    document.getElementById("painelMeta");
+
+const faseElemento =
+    document.getElementById("fase");
+
+const mensagem =
+    document.getElementById("mensagem");
+
+const modalCodigo =
+    document.getElementById("modalCodigo");
+
+const codigoGrande =
+    document.getElementById("codigoGrande");
+
+const entradaCodigo =
+    document.getElementById("entradaCodigo");
+
+const verificar =
+    document.getElementById("verificar");
+
+const erroCodigo =
+    document.getElementById("erroCodigo");
+
+const conquista =
+    document.getElementById("conquista");
+
+const textoConquista =
+    document.getElementById("textoConquista");
+
+
+/* ==========================
+   ATUALIZAR
+========================== */
 
 function atualizar() {
 
     numero.textContent = cliques;
-    painelCliques.textContent = cliques;
-    recordeElemento.textContent = recorde;
 
-    localStorage.setItem("cliques", cliques);
-    localStorage.setItem("recorde", recorde);
+    painelCliques.textContent = cliques;
+
+    metaElemento.textContent = meta;
+
+    painelMeta.textContent = meta;
+
+    faseElemento.textContent = fase;
+
+    localStorage.setItem(
+        "cliques",
+        cliques
+    );
+
+    localStorage.setItem(
+        "meta",
+        meta
+    );
+
+    localStorage.setItem(
+        "fase",
+        fase
+    );
 }
 
 
-/* =========================
+/* ==========================
+   GERAR CÓDIGO
+========================== */
+
+function gerarCodigo() {
+
+    /*
+       Gera um código de 4 números.
+    */
+
+    codigoAtual =
+        Math.floor(
+            1000 + Math.random() * 9000
+        ).toString();
+
+    codigoGrande.textContent =
+        codigoAtual;
+
+    codigoGerado = true;
+
+}
+
+
+/* ==========================
+   ABRIR CÓDIGO
+========================== */
+
+function abrirCodigo() {
+
+    gerarCodigo();
+
+    modalCodigo.style.display = "flex";
+
+    entradaCodigo.value = "";
+
+    erroCodigo.textContent = "";
+
+    setTimeout(() => {
+
+        entradaCodigo.focus();
+
+    }, 100);
+
+}
+
+
+/* ==========================
    CONQUISTA
-========================= */
+========================== */
 
 function mostrarConquista(texto) {
 
-    textoConquista.textContent = texto;
+    textoConquista.textContent =
+        texto;
 
-    conquista.classList.add("mostrar");
+    conquista.classList.add(
+        "mostrar"
+    );
 
     setTimeout(() => {
-        conquista.classList.remove("mostrar");
+
+        conquista.classList.remove(
+            "mostrar"
+        );
+
     }, 3000);
 }
 
 
-/* =========================
+/* ==========================
+   MENSAGENS
+========================== */
+
+const mensagens = [
+
+    "Eu avisei para não clicar.",
+
+    "Você realmente clicou...",
+
+    "Por quê?",
+
+    "Você não sabe obedecer? 😂",
+
+    "Esse botão não vai fazer nada.",
+
+    "Pare enquanto ainda pode.",
+
+    "Isso está ficando estranho...",
+
+    "Você está fazendo isso de propósito.",
+
+    "EU DISSE NÃO!",
+
+    "Último aviso!",
+
+    "Você é impossível.",
+
+    "O botão está com medo.",
+
+    "Você despertou alguma coisa...",
+
+    "Continue se tiver coragem.",
+
+    "Talvez exista um segredo aqui."
+
+];
+
+
+/* ==========================
    CLIQUE
-========================= */
+========================== */
 
-botao.addEventListener("click", function() {
+botao.addEventListener(
+    "click",
+    function() {
 
-    cliques++;
+        /*
+           Se já chegou à meta,
+           não permite clicar mais.
+        */
 
-    if (cliques > recorde) {
-        recorde = cliques;
+        if (cliques >= meta) {
+
+            abrirCodigo();
+
+            return;
+
+        }
+
+
+        cliques++;
+
+
+        atualizar();
+
+
+        /* MENSAGEM */
+
+        let indice =
+            Math.min(
+                Math.floor(cliques / 7),
+                mensagens.length - 1
+            );
+
+        mensagem.textContent =
+            mensagens[indice];
+
+
+        /* =====================
+           CONQUISTAS
+        ===================== */
+
+        if (cliques === 1) {
+
+            mostrarConquista(
+                "Primeiro clique... 😐"
+            );
+
+        }
+
+        if (cliques === 10) {
+
+            mostrarConquista(
+                "10 CLIQUES! 😂"
+            );
+
+        }
+
+        if (cliques === 25) {
+
+            mostrarConquista(
+                "Persistência desbloqueada! 🔥"
+            );
+
+        }
+
+        if (cliques === 50) {
+
+            mostrarConquista(
+                "50 CLIQUES! 🤯"
+            );
+
+        }
+
+        if (cliques === 75) {
+
+            mostrarConquista(
+                "O botão está pedindo socorro! 🚨"
+            );
+
+        }
+
+
+        /* =====================
+           EFEITO
+        ===================== */
+
+        if (cliques % 10 === 0) {
+
+            botao.style.transform =
+                "rotate(" +
+                (Math.random() * 20 - 10) +
+                "deg)";
+
+        }
+
+
+        /* =====================
+           CHEGOU À META
+        ===================== */
+
+        if (cliques >= meta) {
+
+            mensagem.textContent =
+                "🔐 Você chegou ao limite! Descubra o código...";
+
+            mostrarConquista(
+                "🔐 CÓDIGO DESBLOQUEADO!"
+            );
+
+            setTimeout(() => {
+
+                abrirCodigo();
+
+            }, 700);
+
+        }
+
     }
-
-    atualizar();
-
-    /* mensagem aleatória */
-
-    let indice = Math.min(
-        Math.floor(cliques / 2),
-        mensagens.length - 1
-    );
-
-    mensagem.textContent = mensagens[indice];
+);
 
 
-    /* =========================
-       CONQUISTAS
-    ========================= */
+/* ==========================
+   VERIFICAR CÓDIGO
+========================== */
 
-    if (cliques === 1) {
-        mostrarConquista("Primeiro clique... 😐");
+verificar.addEventListener(
+    "click",
+    verificarCodigo
+);
+
+
+entradaCodigo.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Enter") {
+
+            verificarCodigo();
+
+        }
+
     }
-
-    if (cliques === 5) {
-        mostrarConquista("Você não sabe parar! 😂");
-    }
-
-    if (cliques === 10) {
-        mostrarConquista("10 CLIQUES! 😭");
-    }
-
-    if (cliques === 25) {
-        mostrarConquista("Persistência desbloqueada! 🔥");
-    }
-
-    if (cliques === 50) {
-        mostrarConquista("50 CLIQUES! Você está maluco! 🤯");
-    }
-
-    if (cliques === 75) {
-        mostrarConquista("O botão está pedindo socorro! 🚨");
-    }
-
-    if (cliques === 100) {
-        mostrarConquista("100 CLIQUES! LENDA! 👑");
-    }
+);
 
 
-    /* =========================
-       EFEITOS
-    ========================= */
+function verificarCodigo() {
 
-    if (cliques >= 10) {
-        document.body.style.background =
-            "radial-gradient(circle, #501070, #050008)";
-    }
+    let digitado =
+        entradaCodigo.value.trim();
 
-    if (cliques >= 20) {
+
+    if (digitado === codigoAtual) {
+
+        /*
+           ACERTOU!
+        */
+
+        modalCodigo.style.display =
+            "none";
+
+
+        /*
+           Libera mais 100 cliques.
+        */
+
+        meta += 100;
+
+        fase++;
+
+
+        /*
+           Mensagem especial.
+        */
+
+        mensagem.textContent =
+            "🔓 Código correto! Mais 100 cliques foram liberados!";
+
+
+        mostrarConquista(
+            "🔓 FASE " +
+            fase +
+            " DESBLOQUEADA!"
+        );
+
+
+        /*
+           Pequena animação.
+        */
+
         botao.style.transform =
-            "rotate(" + (Math.random() * 20 - 10) + "deg)";
-    }
-
-    if (cliques >= 30) {
-
-        document.body.classList.add("treme");
+            "scale(1.2)";
 
         setTimeout(() => {
-            document.body.classList.remove("treme");
-        }, 500);
+
+            botao.style.transform =
+                "scale(1)";
+
+        }, 400);
+
+
+        atualizar();
+
+
+    } else {
+
+        /*
+           ERROU!
+        */
+
+        erroCodigo.textContent =
+            "❌ Código incorreto! Tente novamente.";
+
+        entradaCodigo.classList.add(
+            "erro"
+        );
+
+        setTimeout(() => {
+
+            entradaCodigo.classList.remove(
+                "erro"
+            );
+
+        }, 400);
+
     }
 
+}
 
-    /* =========================
-       BOTÃO FUGINDO
-    ========================= */
 
-    if (cliques >= 40 && cliques < 100) {
+/* ==========================
+   TECLA ESPAÇO
+========================== */
 
-        let x = Math.random() * 50 - 25;
-        let y = Math.random() * 50 - 25;
+document.addEventListener(
+    "keydown",
+    function(event) {
 
-        botao.style.left = x + "px";
-        botao.style.top = y + "px";
+        if (
+            event.code === "Space" &&
+            modalCodigo.style.display !== "flex"
+        ) {
+
+            event.preventDefault();
+
+            botao.click();
+
+        }
+
     }
+);
 
 
-    /* =========================
-       MODO CAOS
-    ========================= */
-
-    if (cliques >= 60) {
-
-        let escala = 0.8 + Math.random() * 0.5;
-
-        botao.style.transform =
-            "scale(" + escala + ") rotate(" +
-            (Math.random() * 40 - 20) + "deg)";
-    }
-
-
-    /* =========================
-       FINAL SECRETO
-    ========================= */
-
-    if (cliques >= 100) {
-
-        final.style.display = "flex";
-
-        botao.style.display = "none";
-
-        mensagem.textContent =
-            "Você encontrou o segredo!";
-    }
-
-});
-
-
-/* =========================
-   BOTÃO FUGINDO DO MOUSE
-========================= */
-
-botao.addEventListener("mouseover", function() {
-
-    if (cliques >= 70 && cliques < 100) {
-
-        let maxX = window.innerWidth - 300;
-        let maxY = window.innerHeight - 300;
-
-        let x = Math.random() * maxX;
-        let y = Math.random() * maxY;
-
-        botao.style.position = "fixed";
-        botao.style.left = x + "px";
-        botao.style.top = y + "px";
-    }
-
-});
-
-
-/* =========================
-   TECLADO
-========================= */
-
-document.addEventListener("keydown", function(event) {
-
-    /* espaço também conta */
-
-    if (event.code === "Space") {
-
-        event.preventDefault();
-
-        botao.click();
-    }
-
-    /* código secreto */
-
-    if (event.key.toLowerCase() === "x") {
-
-        mensagem.textContent =
-            "🤫 Você descobriu uma tecla secreta...";
-    }
-
-});
-
-
-/* =========================
-   REINICIAR
-========================= */
-
-reiniciar.addEventListener("click", function() {
-
-    cliques = 0;
-
-    localStorage.setItem("cliques", 0);
-
-    final.style.display = "none";
-
-    botao.style.display = "block";
-
-    botao.style.position = "relative";
-    botao.style.left = "0";
-    botao.style.top = "0";
-    botao.style.transform = "none";
-
-    mensagem.textContent =
-        "Eu estou falando sério...";
-
-    atualizar();
-
-});
-
-
-/* =========================
+/* ==========================
    INICIAR
-========================= */
+========================== */
 
 atualizar();
 
+
+/*
+   Se o jogador fechar e voltar
+   exatamente quando deveria
+   digitar um código, mostramos
+   novamente o código.
+*/
+
+if (cliques >= meta) {
+
+    setTimeout(() => {
+
+        abrirCodigo();
+
+    }, 500);
+
+}
+
 </script>
 
-</body>
+```html
+<div class="creditos">
+    Desenvolvido por: Anna Jullya
+</div>
+```
+
+E dentro do `<style>`, adicione:
+
+```css
+.creditos {
+    position: fixed;
+    right: 18px;
+    bottom: 15px;
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    background: rgba(0,0,0,0.35);
+    padding: 8px 12px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    z-index: 50;
+}
+```
+/body>
 </html>
 ```
