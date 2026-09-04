@@ -1,11 +1,16 @@
+``html
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>NÃO CLIQUE!</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -13,1018 +18,2062 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #111827, #1e293b);
-    color: white;
     min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: white;
+
+    background:
+        radial-gradient(circle at center,
+        #35106b,
+        #090014 75%);
+
     overflow: hidden;
 }
 
-header {
-    text-align: center;
-    padding: 25px 10px 10px;
+/* =========================
+   ESTRELAS
+========================= */
+
+.star {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    opacity: .7;
+
+    animation: piscar 2s infinite alternate;
 }
 
+@keyframes piscar {
+
+    from {
+        opacity: .2;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 20px;
+}
+
+
 h1 {
-    font-size: 42px;
+
+    font-size: clamp(45px, 8vw, 90px);
+
+    color: #ff3030;
+
+    text-shadow:
+        0 0 10px red,
+        0 0 30px red,
+        0 0 60px red;
+
+    margin-bottom: 10px;
+}
+
+
+.subtitle {
+
+    font-size: 20px;
+
+    color: #ddd;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   BOTÃO
+========================= */
+
+#botao {
+
+    width: 260px;
+    height: 260px;
+
+    border-radius: 50%;
+
+    border: 8px solid #ff7777;
+
+    background:
+        radial-gradient(circle,
+        #ff3030,
+        #900000);
+
+    color: white;
+
+    font-size: 32px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 20px red,
+        0 0 50px rgba(255,0,0,.7),
+        inset 0 0 30px rgba(0,0,0,.5);
+
+    transition: .2s;
+
+    z-index: 10;
+}
+
+
+#botao:hover {
+
+    transform: scale(1.08);
+}
+
+
+#botao:active {
+
+    transform: scale(.92);
+}
+
+
+/* =========================
+   CONTADOR
+========================= */
+
+.contador {
+
+    margin-top: 25px;
+
+    font-size: 24px;
+
+    line-height: 1.7;
+}
+
+
+#numero {
+
+    color: #ff4444;
+
+    font-weight: bold;
+}
+
+
+#meta {
+
+    color: gold;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   MENSAGEM
+========================= */
+
+#mensagem {
+
+    margin-top: 15px;
+
+    min-height: 35px;
+
+    color: #ffe66d;
+
+    font-size: 20px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   PAINEL
+========================= */
+
+.painel {
+
+    position: fixed;
+
+    top: 20px;
+    left: 20px;
+
+    padding: 15px 20px;
+
+    background:
+        rgba(0,0,0,.6);
+
+    border:
+        1px solid #7d3cff;
+
+    border-radius: 15px;
+
+    backdrop-filter: blur(8px);
+
+    z-index: 50;
+}
+
+
+.painel h3 {
+
+    color: #d4a6ff;
+
     margin-bottom: 8px;
 }
 
-.subtitulo {
-    color: #cbd5e1;
-}
 
-.progresso {
-    width: 90%;
-    max-width: 700px;
-    margin: 25px auto;
-}
+#fase {
 
-.barra {
-    width: 100%;
-    height: 25px;
-    background: #334155;
-    border-radius: 20px;
-    overflow: hidden;
-}
+    color: gold;
 
-.barraInterna {
-    height: 100%;
-    width: 0%;
-    background: #22c55e;
-    transition: 0.3s;
-}
-
-.info {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 8px;
-    font-size: 18px;
-}
-
-#contador {
-    font-size: 75px;
     font-weight: bold;
-    text-align: center;
-    margin-top: 20px;
 }
 
-.botaoClique {
-    display: block;
-    margin: 25px auto;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    border: 8px solid #facc15;
-    background: #ef4444;
-    color: white;
-    font-size: 35px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 12px 0 #991b1b;
-    transition: 0.1s;
-}
 
-.botaoClique:hover {
-    transform: scale(1.04);
-}
+/* =========================
+   BOTÃO DOS PETS
+========================= */
 
-.botaoClique:active {
-    transform: translateY(10px) scale(0.98);
-    box-shadow: 0 2px 0 #991b1b;
-}
+#abrirPets {
 
-#petArea {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background: rgba(15, 23, 42, 0.9);
-    border: 2px solid #475569;
-    border-radius: 15px;
-    padding: 12px 18px;
-    min-width: 210px;
-}
 
-.petEmoji {
-    font-size: 45px;
-    text-align: center;
-}
-
-.petNome {
-    text-align: center;
-    font-weight: bold;
-    margin-top: 3px;
-}
-
-.petFala {
-    color: #cbd5e1;
-    text-align: center;
-    margin-top: 5px;
-    font-size: 14px;
-}
-
-#petsBtn {
-    position: fixed;
     top: 20px;
     right: 20px;
+
     padding: 12px 18px;
+
     border: none;
+
     border-radius: 12px;
+
     background: #8b5cf6;
+
     color: white;
-    font-size: 16px;
+
     font-weight: bold;
+
     cursor: pointer;
+
+    z-index: 60;
 }
 
-#petsMenu {
-    display: none;
+
+#abrirPets:hover {
+
+    background: #a855f7;
+}
+
+
+/* =========================
+   PET
+========================= */
+
+#pet {
+
     position: fixed;
-    top: 75px;
-    right: 20px;
-    width: 300px;
-    max-height: 75vh;
-    overflow-y: auto;
-    background: #0f172a;
-    border: 2px solid #475569;
-    border-radius: 15px;
+
+    bottom: 20px;
+    left: 20px;
+
+    width: 190px;
+
     padding: 15px;
-    z-index: 20;
-}
 
-#petsMenu h2 {
-    text-align: center;
-    margin-bottom: 12px;
-}
-
-.petCard {
-    background: #1e293b;
-    border-radius: 12px;
-    padding: 12px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    border: 2px solid transparent;
-}
-
-.petCard:hover {
-    border-color: #8b5cf6;
-}
-
-.petCard.desbloqueado {
-    border-color: #22c55e;
-}
-
-.petCard.bloqueado {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.petCardEmoji {
-    font-size: 35px;
-}
-
-.petCardNome {
-    font-weight: bold;
-}
-
-.petCardRequisito {
-    font-size: 13px;
-    color: #cbd5e1;
-}
-
-#modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.75);
-    align-items: center;
-    justify-content: center;
-    z-index: 50;
-}
-
-.modalCaixa {
-    width: 90%;
-    max-width: 450px;
-    background: #1e293b;
     border-radius: 20px;
-    padding: 30px;
+
+    background:
+        rgba(0,0,0,.65);
+
+    border:
+        1px solid #8b5cf6;
+
     text-align: center;
-    border: 3px solid #8b5cf6;
+
+    z-index: 40;
+
+    backdrop-filter: blur(8px);
 }
 
-.modalCaixa h2 {
-    font-size: 28px;
+
+#petEmoji {
+
+    font-size: 55px;
+
+    display: block;
+
+    margin-bottom: 5px;
+}
+
+
+#petNome {
+
+    color: #d8b4fe;
+
+    font-weight: bold;
+
+    margin-bottom: 5px;
+}
+
+
+#petFala {
+
+    color: #eee;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================
+   CONQUISTA
+========================= */
+
+#conquista {
+
+    position: fixed;
+
+    top: -150px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background:
+        linear-gradient(135deg,
+        #7b2cff,
+        #ff2ca8);
+
+    padding: 20px 35px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 0 30px #9d4edd;
+
+    transition: .5s;
+
+    z-index: 500;
+
+    text-align: center;
+}
+
+
+#conquista.mostrar {
+
+    top: 25px;
+}
+
+
+/* =========================
+   MODAIS
+========================= */
+
+.modal {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0,0,0,.92);
+
+    z-index: 400;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+}
+
+
+.caixa {
+
+    width: min(520px,100%);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background:
+        linear-gradient(145deg,
+        #18002f,
+        #08000f);
+
+    border:
+        2px solid #a855f7;
+
+    border-radius: 25px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    box-shadow:
+        0 0 40px #8b2cff;
+}
+
+
+/* =========================
+   DESAFIO
+========================= */
+
+.caixa h2 {
+
+    font-size: 32px;
+
+    color: #c084fc;
+
     margin-bottom: 15px;
 }
 
-.modalCaixa p {
-    margin-bottom: 20px;
+
+#perguntaDesafio {
+
+    font-size: 23px;
+
+    margin: 20px 0;
+
     line-height: 1.5;
 }
 
-input {
-    width: 100%;
-    padding: 13px;
-    border-radius: 10px;
-    border: none;
-    font-size: 18px;
-    text-align: center;
-    margin-bottom: 12px;
-}
 
-.modalBtn {
-    padding: 12px 20px;
+.opcao {
+
+    width: 100%;
+
+    padding: 14px;
+
+    margin: 7px 0;
+
     border: none;
-    border-radius: 10px;
-    background: #22c55e;
+
+    border-radius: 12px;
+
+    background: #291044;
+
     color: white;
-    font-size: 17px;
-    font-weight: bold;
+
+    font-size: 18px;
+
     cursor: pointer;
 }
 
-.fecharBtn {
-    background: #64748b;
-    margin-left: 5px;
+
+.opcao:hover {
+
+    background: #51217d;
 }
 
-#eventoMensagem {
-    color: #facc15;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-.creditos {
-    position: fixed;
-    right: 18px;
-    bottom: 15px;
-    font-size: 15px;
-    color: rgba(255,255,255,0.7);
-    background: rgba(0,0,0,0.35);
-    padding: 8px 12px;
-    border-radius: 10px;
-    backdrop-filter: blur(5px);
-    z-index: 50;
-}
-
-#secretStatus {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    background: rgba(15,23,42,0.85);
-    padding: 10px 14px;
-    border-radius: 10px;
-    color: #facc15;
-    font-size: 14px;
-}
-
-@media (max-width: 600px) {
-    h1 {
-        font-size: 32px;
-    }
-
-    #contador {
-        font-size: 55px;
-    }
-
-    .botaoClique {
-        width: 180px;
-        height: 180px;
-        font-size: 28px;
-    }
-
-    #petArea {
-        min-width: 170px;
-    }
-
-    .creditos {
-        font-size: 11px;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<header>
-    <h1>🚫 NÃO CLIQUE!</h1>
-    <div class="subtitulo">Você consegue chegar até o fim?</div>
-</header>
-
-<div id="secretStatus">
-    🔐 Eventos Secretos: <span id="secretosEncontrados">0</span>/5
-</div>
-
-<div class="progresso">
-
-    <div class="barra">
-        <div class="barraInterna" id="barra"></div>
-    </div>
-
-    <div class="info">
-        <span>Cliques: <b id="cliquesTexto">0</b></span>
-        <span>🏆 Recorde: <b id="metaTexto">100</b></span>
-    </div>
-
-</div>
-
-<div id="contador">0</div>
-
-<button class="botaoClique" onclick="clicar()">
-    NÃO CLIQUE
-</button>
-
-<button id="petsBtn" onclick="abrirPets()">
-    🐾 PETS
-</button>
-
-<div id="petArea">
-    <div class="petEmoji" id="petEmoji">🐶</div>
-    <div class="petNome" id="petNome">Bob</div>
-    <div class="petFala" id="petFala">
-        Você consegue! 🐾
-    </div>
-</div>
-
-<div id="petsMenu">
-
-    <h2>🐾 Seus Pets</h2>
-
-    <div id="listaPets"></div>
-
-</div>
-
-<div id="modal">
-
-    <div class="modalCaixa">
-
-        <h2 id="modalTitulo">Evento</h2>
-
-        <p id="modalTexto"></p>
-
-        <div id="campoCodigo">
-            <input id="codigoInput" placeholder="Digite o código">
-        </div>
-
-        <div id="eventoMensagem"></div>
-
-        <button class="modalBtn" id="botaoPrincipal" onclick="confirmarModal()">
-            Confirmar
-        </button>
-
-        <button class="modalBtn fecharBtn" onclick="fecharModal()">
-            Fechar
-        </button>
-
-    </div>
-
-</div>
-
-<div class="creditos">
-    Desenvolvido por: Anna Jullya
-</div>
-
-<script>
 
 /* =========================
-   DADOS DO JOGO
+   CÓDIGO
 ========================= */
 
-let cliques = Number(localStorage.getItem("cliques")) || 0;
+.codigoGrande {
 
-let meta = Number(localStorage.getItem("meta")) || 100;
+    font-size: 45px;
 
-let fase = Number(localStorage.getItem("fase")) || 1;
+    letter-spacing: 10px;
 
-let petAtual = localStorage.getItem("petAtual") || "bob";
+    color: gold;
 
-let secretosEncontrados =
-    Number(localStorage.getItem("secretosEncontrados")) || 0;
+    font-weight: bold;
 
-let eventosUsados =
-    JSON.parse(localStorage.getItem("eventosUsados") || "[]");
+    margin: 20px 0;
+}
 
-let codigoAtual = "";
 
-let tipoModal = "";
+#entradaCodigo {
+
+    width: 100%;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    border: 2px solid #8b5cf6;
+
+    background: #100018;
+
+    color: white;
+
+    font-size: 24px;
+
+    text-align: center;
+
+    outline: none;
+
+    letter-spacing: 5px;
+}
+
+
+#verificar {
+
+    width: 100%;
+
+    padding: 15px;
+
+    margin-top: 12px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #8b5cf6;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+#erroCodigo {
+
+    margin-top: 12px;
+
+    color: #ff5555;
+}
 
 
 /* =========================
    PETS
 ========================= */
 
+.petOpcao {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin: 8px 0;
+
+    border-radius: 15px;
+
+    background:
+        rgba(255,255,255,.07);
+}
+
+
+.petOpcaoEmoji {
+
+    font-size: 40px;
+}
+
+
+.petInfo {
+
+    flex: 1;
+
+    text-align: left;
+}
+
+
+.petInfo strong {
+
+    display: block;
+
+    color: #d8b4fe;
+
+    margin-bottom: 4px;
+}
+
+
+.petInfo small {
+
+    color: #aaa;
+}
+
+
+.petOpcao button {
+
+    padding: 9px 12px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #8b5cf6;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.petBloqueado {
+
+    opacity: .45;
+}
+
+
+.fechar {
+
+    margin-top: 15px;
+
+    padding: 12px 25px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #333;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   CRÉDITOS
+========================= */
+
+.creditos {
+
+    position: fixed;
+
+    right: 18px;
+    bottom: 15px;
+
+    font-size: 15px;
+
+    color:
+        rgba(255,255,255,.7);
+
+    background:
+        rgba(0,0,0,.35);
+
+    padding: 8px 12px;
+
+    border-radius: 10px;
+
+    z-index: 50;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px) {
+
+    #botao {
+
+        width: 210px;
+        height: 210px;
+
+        font-size: 27px;
+    }
+
+
+    .painel {
+
+        top: 10px;
+        left: 10px;
+
+        font-size: 13px;
+    }
+
+
+    #pet {
+
+        width: 155px;
+
+        bottom: 10px;
+        left: 10px;
+    }
+
+
+    #petEmoji {
+
+        font-size: 40px;
+    }
+
+
+    .creditos {
+
+        right: 10px;
+        bottom: 10px;
+
+        font-size: 11px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ESTRELAS -->
+
+<div class="star" style="left:10%;top:15%"></div>
+<div class="star" style="left:25%;top:70%"></div>
+<div class="star" style="left:40%;top:20%"></div>
+<div class="star" style="left:55%;top:80%"></div>
+<div class="star" style="left:70%;top:30%"></div>
+<div class="star" style="left:85%;top:65%"></div>
+<div class="star" style="left:95%;top:15%"></div>
+
+
+<!-- PAINEL -->
+
+<div class="painel">
+
+    <h3>🏆 PROGRESSO</h3>
+
+    <div>
+        Cliques:
+        <span id="painelCliques">0</span>
+    </div>
+
+    <div>
+        Recorde: <span id="meta">100</span>    </div>
+
+    <div>
+        Fase:
+        <span id="fase">1</span>
+    </div>
+
+</div>
+
+
+<!-- BOTÃO PETS -->
+
+<button id="abrirPets">
+
+    🐾 PETS
+
+</button>
+
+
+<!-- PET ATUAL -->
+
+<div id="pet">
+
+    <span id="petEmoji">
+        🐶
+    </span>
+
+    <div id="petNome">
+        Bob
+    </div>
+
+    <div id="petFala">
+        Vamos! Você consegue!
+    </div>
+
+</div>
+
+
+<!-- CONQUISTA -->
+
+<div id="conquista">
+
+    🏆 <strong>CONQUISTA!</strong>
+
+    <br>
+
+    <span id="textoConquista"></span>
+
+</div>
+
+
+<!-- JOGO -->
+
+<div class="container">
+
+    <h1>NÃO CLIQUE!</h1>
+
+    <div class="subtitle">
+
+        Você sabe que deveria parar...
+
+    </div>
+
+
+    <button id="botao">
+
+        NÃO<br>CLIQUE
+
+    </button>
+
+
+    <div class="contador">
+
+        Você clicou
+        <span id="numero">0</span>
+        vezes.
+
+        <br>
+
+        Meta:
+        <span id="meta">100</span>
+
+    </div>
+
+
+    <div id="mensagem">
+
+        Eu estou falando sério...
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MODAL DESAFIO
+========================= -->
+
+<div id="modalDesafio" class="modal">
+
+    <div class="caixa">
+
+        <h2>
+            🧠 DESAFIO!
+        </h2>
+
+        <p>
+
+            Você chegou a 50 cliques!
+
+            <br>
+
+            Responda corretamente
+            para continuar.
+
+        </p>
+
+        <div id="perguntaDesafio"></div>
+
+        <div id="opcoesDesafio"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MODAL CÓDIGO
+========================= -->
+
+<div id="modalCodigo" class="modal">
+
+    <div class="caixa">
+
+        <h2>
+            🔐 CÓDIGO DESBLOQUEADO
+        </h2>
+
+        <p>
+
+            Digite o código para
+            liberar os próximos 100 cliques!
+
+        </p>
+
+
+        <div
+            id="codigoGrande"
+            class="codigoGrande">
+
+            0000
+
+        </div>
+
+
+        <input
+            id="entradaCodigo"
+            type="text"
+            maxlength="4"
+            placeholder="CÓDIGO"
+            autocomplete="off">
+
+
+        <button id="verificar">
+
+            🔓 DESBLOQUEAR
+
+        </button>
+
+
+        <div id="erroCodigo"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MODAL PETS
+========================= -->
+
+<div id="modalPets" class="modal">
+
+    <div class="caixa">
+
+        <h2>
+            🐾 SEUS PETS
+        </h2>
+
+        <p>
+            Desbloqueie novos companheiros
+            conforme avança!
+        </p>
+
+
+        <!-- BOB -->
+
+        <div class="petOpcao">
+
+            <div class="petOpcaoEmoji">
+                🐶
+            </div>
+
+            <div class="petInfo">
+
+                <strong>Bob</strong>
+
+                <small>
+                    Cachorro companheiro
+                </small>
+
+            </div>
+
+            <button
+                onclick="escolherPet('bob')">
+
+                Usar
+
+            </button>
+
+        </div>
+
+
+        <!-- MIA -->
+
+        <div class="petOpcao">
+
+            <div class="petOpcaoEmoji">
+                🐱
+            </div>
+
+            <div class="petInfo">
+
+                <strong>Mia</strong>
+
+                <small>
+                    Desbloqueia com 100 cliques
+                </small>
+
+            </div>
+
+            <button
+                onclick="escolherPet('mia')">
+
+                Usar
+
+            </button>
+
+        </div>
+
+
+        <!-- FROG -->
+
+        <div class="petOpcao">
+
+            <div class="petOpcaoEmoji">
+                🐸
+            </div>
+
+            <div class="petInfo">
+
+                <strong>Frog</strong>
+
+                <small>
+                    Desbloqueia com 250 cliques
+                </small>
+
+            </div>
+
+            <button
+                onclick="escolherPet('frog')">
+
+                Usar
+
+            </button>
+
+        </div>
+
+
+        <!-- PANDA -->
+
+        <div class="petOpcao">
+
+            <div class="petOpcaoEmoji">
+                🐼
+            </div>
+
+            <div class="petInfo">
+
+                <strong>Panda</strong>
+
+                <small>
+                    Desbloqueia com 500 cliques
+                </small>
+
+            </div>
+
+            <button
+                onclick="escolherPet('panda')">
+
+                Usar
+
+            </button>
+
+        </div>
+
+
+        <!-- FOX -->
+
+        <div class="petOpcao">
+
+            <div class="petOpcaoEmoji">
+                🦊
+            </div>
+
+            <div class="petInfo">
+
+                <strong>Fox</strong>
+
+                <small>
+                    Desbloqueia com 1.000 cliques
+                </small>
+
+            </div>
+
+            <button
+                onclick="escolherPet('fox')">
+
+                Usar
+
+            </button>
+
+        </div>
+
+
+        <!-- DRAGÃO -->
+
+        <div class="petOpcao">
+
+            <div class="petOpcaoEmoji">
+                🐲
+            </div>
+
+            <div class="petInfo">
+
+                <strong>Dragão</strong>
+
+                <small>
+                    Desbloqueia com 2.000 cliques
+                </small>
+
+            </div>
+
+            <button
+                onclick="escolherPet('dragao')">
+
+                Usar
+
+            </button>
+
+        </div>
+
+
+        <button
+            class="fechar"
+            onclick="fecharPets()">
+
+            Fechar
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- CRÉDITOS -->
+
+<div class="creditos">
+
+    Desenvolvido por: Anna Jullya
+
+</div>
+
+
+<script>
+
+/* =====================================
+   PROGRESSO
+===================================== */
+
+let cliques =
+    Number(localStorage.getItem("cliques")) || 0;
+
+let meta =
+    Number(localStorage.getItem("meta")) || 100;
+
+let fase =
+    Number(localStorage.getItem("fase")) || 1;
+
+
+/* =====================================
+   PET
+===================================== */
+
+let petAtual =
+    localStorage.getItem("petAtual") ||
+    "bob";
+
+
+/* =====================================
+   CÓDIGO
+===================================== */
+
+let codigoAtual = "";
+
+
+/* =====================================
+   ELEMENTOS
+===================================== */
+
+const botao =
+    document.getElementById("botao");
+
+const numero =
+    document.getElementById("numero");
+
+const metaElemento =
+    document.getElementById("meta");
+
+const painelCliques =
+    document.getElementById("painelCliques");
+
+const painelMeta =
+    document.getElementById("painelMeta");
+
+const faseElemento =
+    document.getElementById("fase");
+
+const mensagem =
+    document.getElementById("mensagem");
+
+const petEmoji =
+    document.getElementById("petEmoji");
+
+const petNome =
+    document.getElementById("petNome");
+
+const petFala =
+    document.getElementById("petFala");
+
+const conquista =
+    document.getElementById("conquista");
+
+const textoConquista =
+    document.getElementById("textoConquista");
+
+const modalDesafio =
+    document.getElementById("modalDesafio");
+
+const perguntaDesafio =
+    document.getElementById("perguntaDesafio");
+
+const opcoesDesafio =
+    document.getElementById("opcoesDesafio");
+
+const modalCodigo =
+    document.getElementById("modalCodigo");
+
+const codigoGrande =
+    document.getElementById("codigoGrande");
+
+const entradaCodigo =
+    document.getElementById("entradaCodigo");
+
+const erroCodigo =
+    document.getElementById("erroCodigo");
+
+const modalPets =
+    document.getElementById("modalPets");
+
+
+/* =====================================
+   DADOS DOS PETS
+===================================== */
+
 const pets = {
 
     bob: {
+
         emoji: "🐶",
+
         nome: "Bob",
+
         requisito: 0,
+
         falas: [
-            "Você consegue! 🐾",
+
+            "Vamos! Você consegue!",
+
             "Continua clicando!",
-            "Não desista!",
-            "Eu acredito em você!"
+
+            "Eu acredito em você!",
+
+            "Você está indo muito bem!",
+
+            "Não desista agora!",
+
+            "Vamos chegar nos 100!"
+
         ]
+
     },
+
 
     mia: {
+
         emoji: "🐱",
+
         nome: "Mia",
+
         requisito: 100,
+
         falas: [
-            "Miau! Mais alguns cliques!",
-            "Você está indo muito bem!",
-            "Não pare agora!"
+
+            "Miau! Continua!",
+
+            "Você vai conseguir!",
+
+            "Não pare agora!",
+
+            "Eu quero ver até onde você chega!",
+
+            "Mais cliques!",
+
+            "MIAU! 😼"
+
         ]
+
     },
+
 
     frog: {
+
         emoji: "🐸",
+
         nome: "Frog",
+
         requisito: 250,
+
         falas: [
-            "Ribbit! Continue!",
-            "Você está ficando rápido!",
-            "Vamos conseguir!"
+
+            "COAX! Vamos!",
+
+            "Pula de clique em clique!",
+
+            "Você está indo longe!",
+
+            "Não seja uma rã desistente!",
+
+            "COAX COAX!",
+
+            "Continue!"
+
         ]
+
     },
+
 
     panda: {
+
         emoji: "🐼",
+
         nome: "Panda",
+
         requisito: 500,
+
         falas: [
+
             "🐼 Força!",
-            "Você chegou longe!",
-            "Não desista!"
+
+            "Você chegou muito longe!",
+
+            "Não pare agora!",
+
+            "O Panda acredita em você!",
+
+            "Mais um pouco!",
+
+            "Você é incrível!"
+
         ]
+
     },
+
 
     fox: {
+
         emoji: "🦊",
+
         nome: "Fox",
+
         requisito: 1000,
+
         falas: [
-            "Você está imparável!",
-            "Mil cliques? Fácil!",
-            "Continue!"
+
+            "🦊 Inteligência ativada!",
+
+            "Você chegou a 1000!",
+
+            "Agora ficou sério!",
+
+            "Continue!",
+
+            "Você não vai desistir agora!",
+
+            "Vamos atrás do próximo recorde!"
+
         ]
+
     },
 
-    dragon: {
+
+    dragao: {
+
         emoji: "🐲",
+
         nome: "Dragão",
+
         requisito: 2000,
+
         falas: [
-            "🔥 O poder do dragão está com você!",
-            "Nada pode te parar!",
-            "Você chegou muito longe!"
+
+            "🐲 VOCÊ É LENDÁRIO!",
+
+            "O Dragão reconhece sua força!",
+
+            "2000 CLIQUES!",
+
+            "Continue, guerreiro!",
+
+            "Você chegou longe demais para parar!",
+
+            "🔥 Vamos para o próximo nível!"
+
         ]
+
     }
 
 };
 
 
-/* =========================
-   EVENTOS SECRETOS
-========================= */
+/* =====================================
+   ATUALIZAR PET
+===================================== */
 
-const eventosSecretos = [
+function atualizarPet() {
 
-    {
-        id: "evento1",
-        titulo: "👀 VOCÊ ENCONTROU ALGO...",
-        texto: "Você descobriu um dos segredos escondidos do jogo!"
-    },
+    const pet =
+        pets[petAtual];
 
-    {
-        id: "evento2",
-        titulo: "🕵️ DETETIVE!",
-        texto: "Parabéns! Você percebeu uma coisa que quase ninguém percebe."
-    },
+    petEmoji.textContent =
+        pet.emoji;
 
-    {
-        id: "evento3",
-        titulo: "🤨 ISSO NÃO DEVERIA ACONTECER",
-        texto: "O jogo percebeu que você está clicando DEMAIS..."
-    },
+    petNome.textContent =
+        pet.nome;
 
-    {
-        id: "evento4",
-        titulo: "🎁 PRESENTE SECRETO!",
-        texto: "Você encontrou um evento secreto escondido!"
-    },
+    mudarFalaPet();
 
-    {
-        id: "evento5",
-        titulo: "👑 LENDÁRIO!",
-        texto: "Você encontrou TODOS os eventos secretos!"
-    }
-
-];
+}
 
 
-/* =========================
-   ATUALIZAR TELA
-========================= */
+/* =====================================
+   FALA DO PET
+===================================== */
 
-function atualizarTela() {
+function mudarFalaPet() {
 
-    document.getElementById("cliquesTexto").textContent = cliques;
+    const pet =
+        pets[petAtual];
 
-    document.getElementById("contador").textContent = cliques;
+    const indice =
+        Math.floor(
+            Math.random() *
+            pet.falas.length
+        );
 
-    document.getElementById("metaTexto").textContent = meta;
+    petFala.textContent =
+        pet.falas[indice];
 
-    document.getElementById("secretosEncontrados").textContent =
-        secretosEncontrados;
+}
 
-    let porcentagem = (cliques / meta) * 100;
 
-    if (porcentagem > 100) {
-        porcentagem = 100;
-    }
+/* =====================================
+   ATUALIZAR
+===================================== */
 
-    document.getElementById("barra").style.width =
-        porcentagem + "%";
+function atualizar() {
 
-    atualizarPet();
+    numero.textContent =
+        cliques;
 
-    localStorage.setItem("cliques", cliques);
+    painelCliques.textContent =
+        cliques;
 
-    localStorage.setItem("meta", meta);
+    metaElemento.textContent =
+        meta;
 
-    localStorage.setItem("fase", fase);
+    painelMeta.textContent =
+        meta;
 
-    localStorage.setItem("petAtual", petAtual);
+    faseElemento.textContent =
+        fase;
+
 
     localStorage.setItem(
-        "secretosEncontrados",
-        secretosEncontrados
+        "cliques",
+        cliques
     );
 
     localStorage.setItem(
-        "eventosUsados",
-        JSON.stringify(eventosUsados)
+        "meta",
+        meta
     );
-}
 
-
-/* =========================
-   CLIQUE PRINCIPAL
-========================= */
-
-function clicar() {
-
-    cliques++;
-
-    atualizarTela();
-
-    /* Desafio a cada 50 */
-
-    if (
-        cliques % 50 === 0 &&
-        cliques < meta
-    ) {
-        setTimeout(abrirDesafio, 300);
-        return;
-    }
-
-    /* Recorde */
-
-    if (cliques >= meta) {
-
-        setTimeout(abrirCodigo, 300);
-
-        return;
-    }
-
-    /* Eventos secretos */
-
-    verificarEventoSecreto();
+    localStorage.setItem(
+        "fase",
+        fase
+    );
 
 }
 
 
-/* =========================
-   EVENTOS SECRETOS
-========================= */
+/* =====================================
+   CONQUISTA
+===================================== */
 
-function verificarEventoSecreto() {
+function mostrarConquista(texto) {
 
-    if (secretosEncontrados >= 5) {
-        return;
-    }
+    textoConquista.textContent =
+        texto;
 
-    let numeroAleatorio = Math.random();
+    conquista.classList.add(
+        "mostrar"
+    );
 
-    /*
-       Pequena chance de evento aparecer
-    */
+    setTimeout(() => {
 
-    if (numeroAleatorio < 0.015) {
+        conquista.classList.remove(
+            "mostrar"
+        );
 
-        let disponiveis =
-            eventosSecretos.filter(
-                evento => !eventosUsados.includes(evento.id)
-            );
+    }, 3000);
 
-        if (disponiveis.length === 0) {
-            return;
-        }
-
-        let evento =
-            disponiveis[
-                Math.floor(
-                    Math.random() * disponiveis.length
-                )
-            ];
-
-        eventosUsados.push(evento.id);
-
-        secretosEncontrados++;
-
-        abrirEventoSecreto(evento);
-    }
 }
 
 
-function abrirEventoSecreto(evento) {
-
-    tipoModal = "secreto";
-
-    document.getElementById("modalTitulo").textContent =
-        evento.titulo;
-
-    document.getElementById("modalTexto").textContent =
-        evento.texto;
-
-    document.getElementById("campoCodigo").style.display =
-        "none";
-
-    document.getElementById("eventoMensagem").textContent =
-        "🔐 Evento secreto descoberto!";
-
-    document.getElementById("botaoPrincipal").textContent =
-        "Continuar";
-
-    document.getElementById("modal").style.display =
-        "flex";
-
-    atualizarTela();
-}
-
-
-/* =========================
+/* =====================================
    DESAFIOS
-========================= */
+===================================== */
 
 const desafios = [
 
     {
-        pergunta: "Quanto é 5 + 5?",
-        resposta: "10"
+        pergunta:
+            "Quanto é 5 + 5?",
+
+        opcoes:
+            ["8","10","15","55"],
+
+        resposta:
+            "10"
     },
 
-    {
-        pergunta: "Qual é a capital do Brasil?",
-        resposta: "brasilia"
-    },
 
     {
-        pergunta: "Quanto é 10 × 2?",
-        resposta: "20"
+        pergunta:
+            "Qual planeta é conhecido como planeta vermelho?",
+
+        opcoes:
+            ["Marte","Júpiter","Terra","Saturno"],
+
+        resposta:
+            "Marte"
     },
 
-    {
-        pergunta: "Quantos lados tem um quadrado?",
-        resposta: "4"
-    },
 
     {
-        pergunta: "Qual planeta é conhecido como Planeta Vermelho?",
-        resposta: "marte"
+        pergunta:
+            "Quantos lados tem um triângulo?",
+
+        opcoes:
+            ["2","3","4","5"],
+
+        resposta:
+            "3"
+    },
+
+
+    {
+        pergunta:
+            "Qual é a capital do Brasil?",
+
+        opcoes:
+            ["São Paulo","Brasília","Rio de Janeiro","Salvador"],
+
+        resposta:
+            "Brasília"
+    },
+
+
+    {
+        pergunta:
+            "Quanto é 10 × 2?",
+
+        opcoes:
+            ["12","20","22","30"],
+
+        resposta:
+            "20"
+    },
+
+
+    {
+        pergunta:
+            "Qual animal é conhecido como rei da selva?",
+
+        opcoes:
+            ["Tigre","Leão","Elefante","Lobo"],
+
+        resposta:
+            "Leão"
     }
 
 ];
 
 
-let desafioAtual;
-
-
-/* =========================
+/* =====================================
    ABRIR DESAFIO
-========================= */
+===================================== */
 
 function abrirDesafio() {
 
-    tipoModal = "desafio";
-
-    desafioAtual =
+    const desafio =
         desafios[
             Math.floor(
-                Math.random() * desafios.length
+                Math.random() *
+                desafios.length
             )
         ];
 
-    document.getElementById("modalTitulo").textContent =
-        "🧠 DESAFIO!";
 
-    document.getElementById("modalTexto").textContent =
-        desafioAtual.pergunta;
+    perguntaDesafio.textContent =
+        desafio.pergunta;
 
-    document.getElementById("campoCodigo").style.display =
-        "block";
 
-    document.getElementById("codigoInput").value = "";
+    opcoesDesafio.innerHTML =
+        "";
 
-    document.getElementById("codigoInput").placeholder =
-        "Digite sua resposta";
 
-    document.getElementById("eventoMensagem").textContent =
-        "Se errar, seus cliques voltam para 0! 😈";
+    desafio.opcoes.forEach(
+        opcao => {
 
-    document.getElementById("botaoPrincipal").textContent =
-        "Responder";
+            const botaoOpcao =
+                document.createElement(
+                    "button"
+                );
 
-    document.getElementById("modal").style.display =
+            botaoOpcao.className =
+                "opcao";
+
+            botaoOpcao.textContent =
+                opcao;
+
+
+            botaoOpcao.onclick =
+                function() {
+
+                    responderDesafio(
+                        opcao,
+                        desafio.resposta
+                    );
+
+                };
+
+
+            opcoesDesafio.appendChild(
+                botaoOpcao
+            );
+
+        }
+    );
+
+
+    modalDesafio.style.display =
         "flex";
 
 }
 
 
-/* =========================
-   CÓDIGO DO RECORDE
-========================= */
+/* =====================================
+   RESPONDER DESAFIO
+===================================== */
 
-function abrirCodigo() {
+function responderDesafio(
+    resposta,
+    correta
+) {
 
-    tipoModal = "codigo";
+    if (resposta === correta) {
+
+        modalDesafio.style.display =
+            "none";
+
+
+        mensagem.textContent =
+            "🎉 Acertou! Seu pet está orgulhoso!";
+
+
+        mostrarConquista(
+            "🧠 DESAFIO COMPLETADO!"
+        );
+
+
+        atualizar();
+
+    }
+
+    else {
+
+        modalDesafio.style.display =
+            "none";
+
+
+        cliques = 0;
+
+
+        mensagem.textContent =
+            "❌ ERROU! Seus cliques voltaram para 0!";
+
+
+        mostrarConquista(
+            "💀 VOCÊ CAIU NO DESAFIO!"
+        );
+
+
+        atualizar();
+
+    }
+
+}
+
+
+/* =====================================
+   CLIQUE
+===================================== */
+
+botao.addEventListener(
+    "click",
+    function() {
+
+
+        if (cliques >= meta) {
+
+            abrirCodigo();
+
+            return;
+
+        }
+
+
+        cliques++;
+
+
+        atualizar();
+
+
+        /*
+           Mensagens normais
+        */
+
+        if (cliques % 10 === 0) {
+
+            mensagem.textContent =
+                "Você está chegando lá...";
+
+        }
+
+
+        /*
+           PET
+        */
+
+        if (cliques % 15 === 0) {
+
+            mudarFalaPet();
+
+        }
+
+
+        /*
+           DESAFIO A CADA 50
+        */
+
+        if (
+            cliques % 50 === 0 &&
+            cliques < meta
+        ) {
+
+            abrirDesafio();
+
+        }
+
+
+        /*
+           META
+        */
+
+        if (cliques >= meta) {
+
+            mensagem.textContent =
+                "🔐 Você chegou na meta!";
+
+
+            mostrarConquista(
+                "🔐 CÓDIGO DESBLOQUEADO!"
+            );
+
+
+            setTimeout(
+                abrirCodigo,
+                700
+            );
+
+        }
+
+
+        /*
+           DESBLOQUEAR PETS
+        */
+
+        verificarPetsDesbloqueados();
+
+    }
+);
+
+
+/* =====================================
+   PETS DESBLOQUEADOS
+===================================== */
+
+function verificarPetsDesbloqueados() {
+
+    Object.keys(pets).forEach(
+        chave => {
+
+            const pet =
+                pets[chave];
+
+            if (
+                cliques >= pet.requisito &&
+                cliques !== 0
+            ) {
+
+                if (
+                    pet.requisito > 0 &&
+                    cliques === pet.requisito
+                ) {
+
+                    mostrarConquista(
+                        "🐾 PET DESBLOQUEADO: " +
+                        pet.nome +
+                        "!"
+                    );
+
+                }
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================
+   ABRIR PETS
+===================================== */
+
+document
+.getElementById("abrirPets")
+.addEventListener(
+    "click",
+    function() {
+
+        modalPets.style.display =
+            "flex";
+
+    }
+);
+
+
+/* =====================================
+   ESCOLHER PET
+===================================== */
+
+function escolherPet(nome) {
+
+    const pet =
+        pets[nome];
+
+
+    if (cliques < pet.requisito) {
+
+        alert(
+            "🔒 Você precisa chegar a " +
+            pet.requisito +
+            " cliques para desbloquear este pet!"
+        );
+
+        return;
+
+    }
+
+
+    petAtual =
+        nome;
+
+
+    localStorage.setItem(
+        "petAtual",
+        petAtual
+    );
+
+
+    atualizarPet();
+
+
+    mensagem.textContent =
+        "🐾 " +
+        pet.nome +
+        " entrou na equipe!";
+
+
+    modalPets.style.display =
+        "none";
+
+}
+
+
+/* =====================================
+   FECHAR PETS
+===================================== */
+
+function fecharPets() {
+
+    modalPets.style.display =
+        "none";
+
+}
+
+
+/* =====================================
+   GERAR CÓDIGO
+===================================== */
+
+function gerarCodigo() {
 
     codigoAtual =
         Math.floor(
-            1000 + Math.random() * 9000
+            1000 +
+            Math.random() * 9000
         ).toString();
 
-    document.getElementById("modalTitulo").textContent =
-        "🔐 VOCÊ CHEGOU AO RECORDE!";
 
-    document.getElementById("modalTexto").innerHTML =
-        "Seu código é:<br><br><strong style='font-size:35px'>" +
-        codigoAtual +
-        "</strong><br><br>Digite o código para continuar.";
+    codigoGrande.textContent =
+        codigoAtual;
 
-    document.getElementById("campoCodigo").style.display =
-        "block";
-
-    document.getElementById("codigoInput").value = "";
-
-    document.getElementById("codigoInput").placeholder =
-        "Digite o código";
-
-    document.getElementById("eventoMensagem").textContent =
-        "";
-
-    document.getElementById("botaoPrincipal").textContent =
-        "Desbloquear";
-
-    document.getElementById("modal").style.display =
-        "flex";
 }
 
 
-/* =========================
-   CONFIRMAR MODAL
-========================= */
+/* =====================================
+   ABRIR CÓDIGO
+===================================== */
 
-function confirmarModal() {
+function abrirCodigo() {
 
-    let resposta =
-        document.getElementById("codigoInput").value
-        .trim()
-        .toLowerCase();
+    gerarCodigo();
 
-    /* Evento secreto */
+    modalCodigo.style.display =
+        "flex";
 
-    if (tipoModal === "secreto") {
+    entradaCodigo.value =
+        "";
 
-        fecharModal();
+    erroCodigo.textContent =
+        "";
 
-        return;
+    setTimeout(() => {
+
+        entradaCodigo.focus();
+
+    }, 100);
+
+}
+
+
+/* =====================================
+   VERIFICAR CÓDIGO
+===================================== */
+
+document
+.getElementById("verificar")
+.addEventListener(
+    "click",
+    verificarCodigo
+);
+
+
+entradaCodigo.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Enter") {
+
+            verificarCodigo();
+
+        }
+
+    }
+);
+
+
+function verificarCodigo() {
+
+    const digitado =
+        entradaCodigo.value.trim();
+
+
+    if (
+        digitado === codigoAtual
+    ) {
+
+        modalCodigo.style.display =
+            "none";
+
+
+        meta += 100;
+
+        fase++;
+
+
+        mensagem.textContent =
+            "🔓 Código correto! +100 cliques liberados!";
+
+
+        mostrarConquista(
+            "👑 FASE " +
+            fase +
+            " DESBLOQUEADA!"
+        );
+
+
+        atualizar();
+
     }
 
+    else {
 
-    /* Desafio */
+        erroCodigo.textContent =
+            "❌ Código incorreto! Tente novamente.";
 
-    if (tipoModal === "desafio") {
+    }
+
+}
+
+
+/* =====================================
+   TECLA ESPAÇO
+===================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
 
         if (
-            resposta ===
-            desafioAtual.resposta.toLowerCase()
+            event.code === "Space" &&
+            modalCodigo.style.display !== "flex" &&
+            modalDesafio.style.display !== "flex" &&
+            modalPets.style.display !== "flex"
         ) {
 
-            document.getElementById("eventoMensagem").textContent =
-                "✅ Acertou! Continue!";
+            event.preventDefault();
 
-            setTimeout(() => {
-                fecharModal();
-            }, 700);
+            botao.click();
 
-        } else {
-
-            document.getElementById("eventoMensagem").textContent =
-                "❌ Errou! Os cliques voltaram para 0!";
-
-            cliques = 0;
-
-            atualizarTela();
-
-            setTimeout(() => {
-                fecharModal();
-            }, 1000);
-        }
-
-        return;
-    }
-
-
-    /* Código */
-
-    if (tipoModal === "codigo") {
-
-        if (resposta === codigoAtual) {
-
-            meta += 100;
-
-            fase++;
-
-            document.getElementById("eventoMensagem").textContent =
-                "🎉 Código correto! Novo recorde desbloqueado!";
-
-            atualizarTela();
-
-            setTimeout(() => {
-                fecharModal();
-            }, 1000);
-
-        } else {
-
-            document.getElementById("eventoMensagem").textContent =
-                "❌ Código errado! Tente novamente.";
         }
 
     }
-
-}
-
-
-/* =========================
-   FECHAR MODAL
-========================= */
-
-function fecharModal() {
-
-    document.getElementById("modal").style.display =
-        "none";
-
-    document.getElementById("codigoInput").value =
-        "";
-
-    document.getElementById("eventoMensagem").textContent =
-        "";
-
-}
+);
 
 
-/* =========================
-   PETS
-========================= */
-
-function atualizarPet() {
-
-    let pet = pets[petAtual];
-
-    document.getElementById("petEmoji").textContent =
-        pet.emoji;
-
-    document.getElementById("petNome").textContent =
-        pet.nome;
-
-    /*
-       Troca a fala de vez em quando
-    */
-
-    if (cliques % 15 === 0 && cliques !== 0) {
-
-        let fala =
-            pet.falas[
-                Math.floor(
-                    Math.random() * pet.falas.length
-                )
-            ];
-
-        document.getElementById("petFala").textContent =
-            fala;
-    }
-
-}
-
-
-/* =========================
-   MENU DE PETS
-========================= */
-
-function abrirPets() {
-
-    let menu =
-        document.getElementById("petsMenu");
-
-    if (menu.style.display === "block") {
-
-        menu.style.display = "none";
-
-    } else {
-
-        menu.style.display = "block";
-
-        montarPets();
-
-    }
-
-}
-
-
-function montarPets() {
-
-    let lista =
-        document.getElementById("listaPets");
-
-    lista.innerHTML = "";
-
-    for (let id in pets) {
-
-        let pet = pets[id];
-
-        let desbloqueado =
-            cliques >= pet.requisito;
-
-        let card =
-            document.createElement("div");
-
-        card.className =
-            "petCard " +
-            (desbloqueado
-                ? "desbloqueado"
-                : "bloqueado");
-
-        card.innerHTML = `
-            <div class="petCardEmoji">
-                ${pet.emoji}
-            </div>
-
-            <div class="petCardNome">
-                ${pet.nome}
-            </div>
-
-            <div class="petCardRequisito">
-                ${
-                    pet.requisito === 0
-                    ? "Desbloqueado"
-                    : "Precisa de " +
-                      pet.requisito +
-                      " cliques"
-                }
-            </div>
-        `;
-
-        if (desbloqueado) {
-
-            card.onclick = function() {
-
-                petAtual = id;
-
-                atualizarTela();
-
-                montarPets();
-
-            };
-
-        }
-
-        lista.appendChild(card);
-
-    }
-
-}
-
-
-/* =========================
+/* =====================================
    INICIAR
-========================= */
+===================================== */
 
-atualizarTela();
+atualizar();
+
+atualizarPet();
 
 </script>
 
 </body>
+
 </html>
+```
