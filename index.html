@@ -11,10 +11,6 @@
 
 <style>
 
-/* =========================
-   CONFIGURAÇÕES GERAIS
-========================= */
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -22,11 +18,8 @@
 }
 
 body {
-
     min-height: 100vh;
-
     font-family: Arial, sans-serif;
-
     color: white;
 
     background:
@@ -35,26 +28,18 @@ body {
         #090014 75%);
 
     overflow: hidden;
-
-    transition: .5s;
 }
-
 
 /* =========================
    ESTRELAS
 ========================= */
 
 .star {
-
     position: fixed;
-
     width: 3px;
     height: 3px;
-
     background: white;
-
     border-radius: 50%;
-
     opacity: .7;
 
     animation: piscar 2s infinite alternate;
@@ -82,11 +67,9 @@ body {
     min-height: 100vh;
 
     display: flex;
-
     flex-direction: column;
 
     align-items: center;
-
     justify-content: center;
 
     text-align: center;
@@ -127,7 +110,6 @@ h1 {
 #botao {
 
     width: 260px;
-
     height: 260px;
 
     border-radius: 50%;
@@ -200,14 +182,6 @@ h1 {
 }
 
 
-#moedas {
-
-    color: #ffd700;
-
-    font-weight: bold;
-}
-
-
 /* =========================
    MENSAGEM
 ========================= */
@@ -235,7 +209,6 @@ h1 {
     position: fixed;
 
     top: 20px;
-
     left: 20px;
 
     padding: 15px 20px;
@@ -271,15 +244,14 @@ h1 {
 
 
 /* =========================
-   BOTÃO LOJA
+   BOTÃO DOS PETS
 ========================= */
 
-#abrirLoja {
+#abrirPets {
 
     position: fixed;
 
     top: 20px;
-
     right: 20px;
 
     padding: 12px 18px;
@@ -300,7 +272,7 @@ h1 {
 }
 
 
-#abrirLoja:hover {
+#abrirPets:hover {
 
     background: #a855f7;
 }
@@ -315,10 +287,9 @@ h1 {
     position: fixed;
 
     bottom: 20px;
-
     left: 20px;
 
-    width: 180px;
+    width: 190px;
 
     padding: 15px;
 
@@ -587,42 +558,61 @@ h1 {
 
 
 /* =========================
-   LOJA
+   PETS
 ========================= */
 
-.skin {
+.petOpcao {
 
     display: flex;
 
     align-items: center;
 
-    justify-content: space-between;
+    gap: 15px;
 
-    gap: 10px;
+    width: 100%;
 
     padding: 12px;
 
-    margin: 10px 0;
+    margin: 8px 0;
 
     border-radius: 15px;
 
-    background: rgba(255,255,255,.07);
+    background:
+        rgba(255,255,255,.07);
 }
 
 
-.skinVisual {
+.petOpcaoEmoji {
 
-    width: 55px;
-
-    height: 55px;
-
-    border-radius: 50%;
-
-    border: 4px solid white;
+    font-size: 40px;
 }
 
 
-.skin button {
+.petInfo {
+
+    flex: 1;
+
+    text-align: left;
+}
+
+
+.petInfo strong {
+
+    display: block;
+
+    color: #d8b4fe;
+
+    margin-bottom: 4px;
+}
+
+
+.petInfo small {
+
+    color: #aaa;
+}
+
+
+.petOpcao button {
 
     padding: 9px 12px;
 
@@ -637,6 +627,12 @@ h1 {
     font-weight: bold;
 
     cursor: pointer;
+}
+
+
+.petBloqueado {
+
+    opacity: .45;
 }
 
 
@@ -667,12 +663,12 @@ h1 {
     position: fixed;
 
     right: 18px;
-
     bottom: 15px;
 
     font-size: 15px;
 
-    color: rgba(255,255,255,.7);
+    color:
+        rgba(255,255,255,.7);
 
     background:
         rgba(0,0,0,.35);
@@ -694,39 +690,39 @@ h1 {
     #botao {
 
         width: 210px;
-
         height: 210px;
 
         font-size: 27px;
     }
 
+
     .painel {
 
         top: 10px;
-
         left: 10px;
 
         font-size: 13px;
     }
 
+
     #pet {
 
-        width: 150px;
+        width: 155px;
 
         bottom: 10px;
-
         left: 10px;
     }
+
 
     #petEmoji {
 
         font-size: 40px;
     }
 
+
     .creditos {
 
         right: 10px;
-
         bottom: 10px;
 
         font-size: 11px;
@@ -774,26 +770,25 @@ h1 {
         <span id="fase">1</span>
     </div>
 
-    <div>
-        💰
-        <span id="painelMoedas">0</span>
-    </div>
-
 </div>
 
 
-<!-- LOJA -->
+<!-- BOTÃO PETS -->
 
-<button id="abrirLoja">
-    🛒 LOJA
+<button id="abrirPets">
+
+    🐾 PETS
+
 </button>
 
 
-<!-- PET -->
+<!-- PET ATUAL -->
 
 <div id="pet">
 
-    <span id="petEmoji">🐶</span>
+    <span id="petEmoji">
+        🐶
+    </span>
 
     <div id="petNome">
         Bob
@@ -850,11 +845,6 @@ h1 {
         Meta:
         <span id="meta">100</span>
 
-        <br>
-
-        💰 Moedas:
-        <span id="moedas">0</span>
-
     </div>
 
 
@@ -880,16 +870,17 @@ h1 {
         </h2>
 
         <p>
+
             Você chegou a 50 cliques!
+
             <br>
-            Responda corretamente para continuar.
+
+            Responda corretamente
+            para continuar.
+
         </p>
 
-        <div id="perguntaDesafio">
-
-            Pergunta
-        </div>
-
+        <div id="perguntaDesafio"></div>
 
         <div id="opcoesDesafio"></div>
 
@@ -911,8 +902,10 @@ h1 {
         </h2>
 
         <p>
-            Digite o código para liberar
-            os próximos 100 cliques!
+
+            Digite o código para
+            liberar os próximos 100 cliques!
+
         </p>
 
 
@@ -948,40 +941,43 @@ h1 {
 
 
 <!-- =========================
-     LOJA
+     MODAL PETS
 ========================= -->
 
-<div id="modalLoja" class="modal">
+<div id="modalPets" class="modal">
 
     <div class="caixa">
 
         <h2>
-            🛒 LOJA DE SKINS
+            🐾 SEUS PETS
         </h2>
 
         <p>
-            💰 Você tem
-            <strong id="moedasLoja">0</strong>
-            moedas.
+            Desbloqueie novos companheiros
+            conforme avança!
         </p>
 
 
-        <div class="skin">
+        <!-- BOB -->
 
-            <div>
+        <div class="petOpcao">
 
-                🔴 Clássica
-
+            <div class="petOpcaoEmoji">
+                🐶
             </div>
 
-            <div
-                class="skinVisual"
-                style="background:#ff3030">
+            <div class="petInfo">
+
+                <strong>Bob</strong>
+
+                <small>
+                    Cachorro companheiro
+                </small>
 
             </div>
 
             <button
-                onclick="comprarSkin('classica',0)">
+                onclick="escolherPet('bob')">
 
                 Usar
 
@@ -990,96 +986,140 @@ h1 {
         </div>
 
 
-        <div class="skin">
+        <!-- MIA -->
 
-            <div>
+        <div class="petOpcao">
 
-                🔵 Azul
-
+            <div class="petOpcaoEmoji">
+                🐱
             </div>
 
-            <div
-                class="skinVisual"
-                style="background:#168cff">
+            <div class="petInfo">
+
+                <strong>Mia</strong>
+
+                <small>
+                    Desbloqueia com 100 cliques
+                </small>
 
             </div>
 
             <button
-                onclick="comprarSkin('azul',50)">
+                onclick="escolherPet('mia')">
 
-                50 💰
+                Usar
 
             </button>
 
         </div>
 
 
-        <div class="skin">
+        <!-- FROG -->
 
-            <div>
+        <div class="petOpcao">
 
-                🟢 Verde
-
+            <div class="petOpcaoEmoji">
+                🐸
             </div>
 
-            <div
-                class="skinVisual"
-                style="background:#20c970">
+            <div class="petInfo">
+
+                <strong>Frog</strong>
+
+                <small>
+                    Desbloqueia com 250 cliques
+                </small>
 
             </div>
 
             <button
-                onclick="comprarSkin('verde',100)">
+                onclick="escolherPet('frog')">
 
-                100 💰
+                Usar
 
             </button>
 
         </div>
 
 
-        <div class="skin">
+        <!-- PANDA -->
 
-            <div>
+        <div class="petOpcao">
 
-                🟣 Roxa
-
+            <div class="petOpcaoEmoji">
+                🐼
             </div>
 
-            <div
-                class="skinVisual"
-                style="background:#a855f7">
+            <div class="petInfo">
+
+                <strong>Panda</strong>
+
+                <small>
+                    Desbloqueia com 500 cliques
+                </small>
 
             </div>
 
             <button
-                onclick="comprarSkin('roxa',150)">
+                onclick="escolherPet('panda')">
 
-                150 💰
+                Usar
 
             </button>
 
         </div>
 
 
-        <div class="skin">
+        <!-- FOX -->
 
-            <div>
+        <div class="petOpcao">
 
-                🟡 Dourada
-
+            <div class="petOpcaoEmoji">
+                🦊
             </div>
 
-            <div
-                class="skinVisual"
-                style="background:gold">
+            <div class="petInfo">
+
+                <strong>Fox</strong>
+
+                <small>
+                    Desbloqueia com 1.000 cliques
+                </small>
 
             </div>
 
             <button
-                onclick="comprarSkin('dourada',300)">
+                onclick="escolherPet('fox')">
 
-                300 💰
+                Usar
+
+            </button>
+
+        </div>
+
+
+        <!-- DRAGÃO -->
+
+        <div class="petOpcao">
+
+            <div class="petOpcaoEmoji">
+                🐲
+            </div>
+
+            <div class="petInfo">
+
+                <strong>Dragão</strong>
+
+                <small>
+                    Desbloqueia com 2.000 cliques
+                </small>
+
+            </div>
+
+            <button
+                onclick="escolherPet('dragao')">
+
+                Usar
 
             </button>
 
@@ -1088,7 +1128,7 @@ h1 {
 
         <button
             class="fechar"
-            onclick="fecharLoja()">
+            onclick="fecharPets()">
 
             Fechar
 
@@ -1110,9 +1150,9 @@ h1 {
 
 <script>
 
-/* =========================================
+/* =====================================
    PROGRESSO
-========================================= */
+===================================== */
 
 let cliques =
     Number(localStorage.getItem("cliques")) || 0;
@@ -1123,46 +1163,26 @@ let meta =
 let fase =
     Number(localStorage.getItem("fase")) || 1;
 
-let moedas =
-    Number(localStorage.getItem("moedas")) || 0;
 
-
-/* =========================================
-   SKINS
-========================================= */
-
-let skinsCompradas =
-    JSON.parse(
-        localStorage.getItem("skinsCompradas")
-    ) || ["classica"];
-
-
-let skinAtual =
-    localStorage.getItem("skinAtual") ||
-    "classica";
-
-
-/* =========================================
+/* =====================================
    PET
-========================================= */
+===================================== */
 
-let petEmoji =
-    localStorage.getItem("petEmoji") ||
-    "🐶";
+let petAtual =
+    localStorage.getItem("petAtual") ||
+    "bob";
 
 
-/* =========================================
+/* =====================================
    CÓDIGO
-========================================= */
+===================================== */
 
 let codigoAtual = "";
 
-let ultimoDesafio = 0;
 
-
-/* =========================================
+/* =====================================
    ELEMENTOS
-========================================= */
+===================================== */
 
 const botao =
     document.getElementById("botao");
@@ -1182,17 +1202,14 @@ const painelMeta =
 const faseElemento =
     document.getElementById("fase");
 
-const moedasElemento =
-    document.getElementById("moedas");
-
-const painelMoedas =
-    document.getElementById("painelMoedas");
-
 const mensagem =
     document.getElementById("mensagem");
 
-const petEmojiElemento =
+const petEmoji =
     document.getElementById("petEmoji");
+
+const petNome =
+    document.getElementById("petNome");
 
 const petFala =
     document.getElementById("petFala");
@@ -1224,53 +1241,224 @@ const entradaCodigo =
 const erroCodigo =
     document.getElementById("erroCodigo");
 
-const modalLoja =
-    document.getElementById("modalLoja");
-
-const moedasLoja =
-    document.getElementById("moedasLoja");
+const modalPets =
+    document.getElementById("modalPets");
 
 
-/* =========================================
-   PET
-========================================= */
+/* =====================================
+   DADOS DOS PETS
+===================================== */
 
-petEmojiElemento.textContent =
-    petEmoji;
+const pets = {
 
+    bob: {
 
-/* =========================================
-   FALAS DO PET
-========================================= */
+        emoji: "🐶",
 
-const falasPet = [
+        nome: "Bob",
 
-    "🐶 Você consegue!",
+        requisito: 0,
 
-    "🔥 Continua clicando!",
+        falas: [
 
-    "😎 Eu acredito em você!",
+            "Vamos! Você consegue!",
 
-    "😂 Você ainda está clicando?!",
+            "Continua clicando!",
 
-    "🚀 Vamos chegar nos 100!",
+            "Eu acredito em você!",
 
-    "💰 Mais cliques = mais moedas!",
+            "Você está indo muito bem!",
 
-    "🧠 Cuidado com os desafios!",
+            "Não desista agora!",
 
-    "👀 Eu sei que você vai clicar.",
+            "Vamos chegar nos 100!"
 
-    "🏆 Você está indo muito bem!",
+        ]
 
-    "😈 Não pare agora..."
-
-];
+    },
 
 
-/* =========================================
+    mia: {
+
+        emoji: "🐱",
+
+        nome: "Mia",
+
+        requisito: 100,
+
+        falas: [
+
+            "Miau! Continua!",
+
+            "Você vai conseguir!",
+
+            "Não pare agora!",
+
+            "Eu quero ver até onde você chega!",
+
+            "Mais cliques!",
+
+            "MIAU! 😼"
+
+        ]
+
+    },
+
+
+    frog: {
+
+        emoji: "🐸",
+
+        nome: "Frog",
+
+        requisito: 250,
+
+        falas: [
+
+            "COAX! Vamos!",
+
+            "Pula de clique em clique!",
+
+            "Você está indo longe!",
+
+            "Não seja uma rã desistente!",
+
+            "COAX COAX!",
+
+            "Continue!"
+
+        ]
+
+    },
+
+
+    panda: {
+
+        emoji: "🐼",
+
+        nome: "Panda",
+
+        requisito: 500,
+
+        falas: [
+
+            "🐼 Força!",
+
+            "Você chegou muito longe!",
+
+            "Não pare agora!",
+
+            "O Panda acredita em você!",
+
+            "Mais um pouco!",
+
+            "Você é incrível!"
+
+        ]
+
+    },
+
+
+    fox: {
+
+        emoji: "🦊",
+
+        nome: "Fox",
+
+        requisito: 1000,
+
+        falas: [
+
+            "🦊 Inteligência ativada!",
+
+            "Você chegou a 1000!",
+
+            "Agora ficou sério!",
+
+            "Continue!",
+
+            "Você não vai desistir agora!",
+
+            "Vamos atrás do próximo recorde!"
+
+        ]
+
+    },
+
+
+    dragao: {
+
+        emoji: "🐲",
+
+        nome: "Dragão",
+
+        requisito: 2000,
+
+        falas: [
+
+            "🐲 VOCÊ É LENDÁRIO!",
+
+            "O Dragão reconhece sua força!",
+
+            "2000 CLIQUES!",
+
+            "Continue, guerreiro!",
+
+            "Você chegou longe demais para parar!",
+
+            "🔥 Vamos para o próximo nível!"
+
+        ]
+
+    }
+
+};
+
+
+/* =====================================
+   ATUALIZAR PET
+===================================== */
+
+function atualizarPet() {
+
+    const pet =
+        pets[petAtual];
+
+    petEmoji.textContent =
+        pet.emoji;
+
+    petNome.textContent =
+        pet.nome;
+
+    mudarFalaPet();
+
+}
+
+
+/* =====================================
+   FALA DO PET
+===================================== */
+
+function mudarFalaPet() {
+
+    const pet =
+        pets[petAtual];
+
+    const indice =
+        Math.floor(
+            Math.random() *
+            pet.falas.length
+        );
+
+    petFala.textContent =
+        pet.falas[indice];
+
+}
+
+
+/* =====================================
    ATUALIZAR
-========================================= */
+===================================== */
 
 function atualizar() {
 
@@ -1289,15 +1477,6 @@ function atualizar() {
     faseElemento.textContent =
         fase;
 
-    moedasElemento.textContent =
-        moedas;
-
-    painelMoedas.textContent =
-        moedas;
-
-    moedasLoja.textContent =
-        moedas;
-
 
     localStorage.setItem(
         "cliques",
@@ -1314,27 +1493,12 @@ function atualizar() {
         fase
     );
 
-    localStorage.setItem(
-        "moedas",
-        moedas
-    );
-
-    localStorage.setItem(
-        "skinsCompradas",
-        JSON.stringify(skinsCompradas)
-    );
-
-    localStorage.setItem(
-        "skinAtual",
-        skinAtual
-    );
-
 }
 
 
-/* =========================================
+/* =====================================
    CONQUISTA
-========================================= */
+===================================== */
 
 function mostrarConquista(texto) {
 
@@ -1352,29 +1516,13 @@ function mostrarConquista(texto) {
         );
 
     }, 3000);
+
 }
 
 
-/* =========================================
-   MUDAR PET
-========================================= */
-
-function mudarFalaPet() {
-
-    let indice =
-        Math.floor(
-            Math.random() *
-            falasPet.length
-        );
-
-    petFala.textContent =
-        falasPet[indice];
-}
-
-
-/* =========================================
-   PERGUNTAS
-========================================= */
+/* =====================================
+   DESAFIOS
+===================================== */
 
 const desafios = [
 
@@ -1383,62 +1531,67 @@ const desafios = [
             "Quanto é 5 + 5?",
 
         opcoes:
-            ["8", "10", "15", "55"],
+            ["8","10","15","55"],
 
         resposta:
             "10"
     },
+
 
     {
         pergunta:
             "Qual planeta é conhecido como planeta vermelho?",
 
         opcoes:
-            ["Marte", "Júpiter", "Terra", "Saturno"],
+            ["Marte","Júpiter","Terra","Saturno"],
 
         resposta:
             "Marte"
     },
+
 
     {
         pergunta:
             "Quantos lados tem um triângulo?",
 
         opcoes:
-            ["2", "3", "4", "5"],
+            ["2","3","4","5"],
 
         resposta:
             "3"
     },
+
 
     {
         pergunta:
             "Qual é a capital do Brasil?",
 
         opcoes:
-            ["São Paulo", "Brasília", "Rio de Janeiro", "Salvador"],
+            ["São Paulo","Brasília","Rio de Janeiro","Salvador"],
 
         resposta:
             "Brasília"
     },
+
 
     {
         pergunta:
             "Quanto é 10 × 2?",
 
         opcoes:
-            ["12", "20", "22", "30"],
+            ["12","20","22","30"],
 
         resposta:
             "20"
     },
 
+
     {
         pergunta:
-            "Qual animal é conhecido como o rei da selva?",
+            "Qual animal é conhecido como rei da selva?",
 
         opcoes:
-            ["Tigre", "Leão", "Elefante", "Lobo"],
+            ["Tigre","Leão","Elefante","Lobo"],
 
         resposta:
             "Leão"
@@ -1447,13 +1600,13 @@ const desafios = [
 ];
 
 
-/* =========================================
+/* =====================================
    ABRIR DESAFIO
-========================================= */
+===================================== */
 
 function abrirDesafio() {
 
-    let desafio =
+    const desafio =
         desafios[
             Math.floor(
                 Math.random() *
@@ -1466,14 +1619,17 @@ function abrirDesafio() {
         desafio.pergunta;
 
 
-    opcoesDesafio.innerHTML = "";
+    opcoesDesafio.innerHTML =
+        "";
 
 
     desafio.opcoes.forEach(
         opcao => {
 
-            let botaoOpcao =
-                document.createElement("button");
+            const botaoOpcao =
+                document.createElement(
+                    "button"
+                );
 
             botaoOpcao.className =
                 "opcao";
@@ -1503,12 +1659,13 @@ function abrirDesafio() {
 
     modalDesafio.style.display =
         "flex";
+
 }
 
 
-/* =========================================
+/* =====================================
    RESPONDER DESAFIO
-========================================= */
+===================================== */
 
 function responderDesafio(
     resposta,
@@ -1522,7 +1679,7 @@ function responderDesafio(
 
 
         mensagem.textContent =
-            "🎉 Acertou! O pet está orgulhoso!";
+            "🎉 Acertou! Seu pet está orgulhoso!";
 
 
         mostrarConquista(
@@ -1530,18 +1687,11 @@ function responderDesafio(
         );
 
 
-        moedas += 25;
-
-
         atualizar();
 
+    }
 
-    } else {
-
-        /*
-           ERROU:
-           volta os cliques para 0.
-        */
+    else {
 
         modalDesafio.style.display =
             "none";
@@ -1566,84 +1716,49 @@ function responderDesafio(
 }
 
 
-/* =========================================
-   CLIQUE PRINCIPAL
-========================================= */
+/* =====================================
+   CLIQUE
+===================================== */
 
 botao.addEventListener(
     "click",
     function() {
 
 
-        /*
-           Impede clique enquanto
-           precisa resolver código.
-        */
-
         if (cliques >= meta) {
 
             abrirCodigo();
 
             return;
+
         }
 
 
         cliques++;
 
 
-        /*
-           Cada clique dá uma moeda.
-        */
-
-        moedas++;
-
-
         atualizar();
 
 
         /*
-           Mensagem
+           Mensagens normais
         */
 
         if (cliques % 10 === 0) {
 
             mensagem.textContent =
-                "🔥 " +
-                cliques +
-                " cliques!";
+                "Você está chegando lá...";
 
         }
 
 
         /*
-           Pet fala
+           PET
         */
 
         if (cliques % 15 === 0) {
 
             mudarFalaPet();
-
-        }
-
-
-        /*
-           Conquistas
-        */
-
-        if (cliques === 10) {
-
-            mostrarConquista(
-                "🔥 10 CLIQUES!"
-            );
-
-        }
-
-
-        if (cliques === 25) {
-
-            mostrarConquista(
-                "😈 Você não sabe parar!"
-            );
 
         }
 
@@ -1663,13 +1778,14 @@ botao.addEventListener(
 
 
         /*
-           META DOS 100
+           META
         */
 
         if (cliques >= meta) {
 
             mensagem.textContent =
-                "🔐 Chegou na meta!";
+                "🔐 Você chegou na meta!";
+
 
             mostrarConquista(
                 "🔐 CÓDIGO DESBLOQUEADO!"
@@ -1683,13 +1799,135 @@ botao.addEventListener(
 
         }
 
+
+        /*
+           DESBLOQUEAR PETS
+        */
+
+        verificarPetsDesbloqueados();
+
     }
 );
 
 
-/* =========================================
+/* =====================================
+   PETS DESBLOQUEADOS
+===================================== */
+
+function verificarPetsDesbloqueados() {
+
+    Object.keys(pets).forEach(
+        chave => {
+
+            const pet =
+                pets[chave];
+
+            if (
+                cliques >= pet.requisito &&
+                cliques !== 0
+            ) {
+
+                if (
+                    pet.requisito > 0 &&
+                    cliques === pet.requisito
+                ) {
+
+                    mostrarConquista(
+                        "🐾 PET DESBLOQUEADO: " +
+                        pet.nome +
+                        "!"
+                    );
+
+                }
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================
+   ABRIR PETS
+===================================== */
+
+document
+.getElementById("abrirPets")
+.addEventListener(
+    "click",
+    function() {
+
+        modalPets.style.display =
+            "flex";
+
+    }
+);
+
+
+/* =====================================
+   ESCOLHER PET
+===================================== */
+
+function escolherPet(nome) {
+
+    const pet =
+        pets[nome];
+
+
+    if (cliques < pet.requisito) {
+
+        alert(
+            "🔒 Você precisa chegar a " +
+            pet.requisito +
+            " cliques para desbloquear este pet!"
+        );
+
+        return;
+
+    }
+
+
+    petAtual =
+        nome;
+
+
+    localStorage.setItem(
+        "petAtual",
+        petAtual
+    );
+
+
+    atualizarPet();
+
+
+    mensagem.textContent =
+        "🐾 " +
+        pet.nome +
+        " entrou na equipe!";
+
+
+    modalPets.style.display =
+        "none";
+
+}
+
+
+/* =====================================
+   FECHAR PETS
+===================================== */
+
+function fecharPets() {
+
+    modalPets.style.display =
+        "none";
+
+}
+
+
+/* =====================================
    GERAR CÓDIGO
-========================================= */
+===================================== */
 
 function gerarCodigo() {
 
@@ -1706,9 +1944,9 @@ function gerarCodigo() {
 }
 
 
-/* =========================================
+/* =====================================
    ABRIR CÓDIGO
-========================================= */
+===================================== */
 
 function abrirCodigo() {
 
@@ -1717,7 +1955,8 @@ function abrirCodigo() {
     modalCodigo.style.display =
         "flex";
 
-    entradaCodigo.value = "";
+    entradaCodigo.value =
+        "";
 
     erroCodigo.textContent =
         "";
@@ -1731,9 +1970,9 @@ function abrirCodigo() {
 }
 
 
-/* =========================================
+/* =====================================
    VERIFICAR CÓDIGO
-========================================= */
+===================================== */
 
 document
 .getElementById("verificar")
@@ -1759,30 +1998,21 @@ entradaCodigo.addEventListener(
 
 function verificarCodigo() {
 
-    let digitado =
+    const digitado =
         entradaCodigo.value.trim();
 
 
-    if (digitado === codigoAtual) {
+    if (
+        digitado === codigoAtual
+    ) {
 
         modalCodigo.style.display =
             "none";
 
 
-        /*
-           LIBERA +100
-        */
-
         meta += 100;
 
         fase++;
-
-
-        /*
-           BÔNUS
-        */
-
-        moedas += 100;
 
 
         mensagem.textContent =
@@ -1798,191 +2028,21 @@ function verificarCodigo() {
 
         atualizar();
 
+    }
 
-    } else {
+    else {
 
         erroCodigo.textContent =
-            "❌ Código incorreto!";
+            "❌ Código incorreto! Tente novamente.";
 
     }
 
 }
 
 
-/* =========================================
-   LOJA
-========================================= */
-
-document
-.getElementById("abrirLoja")
-.addEventListener(
-    "click",
-    function() {
-
-        moedasLoja.textContent =
-            moedas;
-
-        modalLoja.style.display =
-            "flex";
-
-    }
-);
-
-
-/* =========================================
-   FECHAR LOJA
-========================================= */
-
-function fecharLoja() {
-
-    modalLoja.style.display =
-        "none";
-
-}
-
-
-/* =========================================
-   COMPRAR SKIN
-========================================= */
-
-function comprarSkin(
-    nome,
-    preco
-) {
-
-    /*
-       Se já possui
-    */
-
-    if (
-        skinsCompradas.includes(nome)
-    ) {
-
-        skinAtual = nome;
-
-        aplicarSkin();
-
-        atualizar();
-
-        mensagem.textContent =
-            "🎨 Skin equipada!";
-
-        return;
-
-    }
-
-
-    /*
-       Verificar moedas
-    */
-
-    if (moedas < preco) {
-
-        alert(
-            "💰 Você não tem moedas suficientes!"
-        );
-
-        return;
-
-    }
-
-
-    /*
-       Comprar
-    */
-
-    moedas -= preco;
-
-
-    skinsCompradas.push(
-        nome
-    );
-
-
-    skinAtual = nome;
-
-
-    aplicarSkin();
-
-
-    atualizar();
-
-
-    mensagem.textContent =
-        "🎨 Skin comprada e equipada!";
-
-}
-
-
-/* =========================================
-   APLICAR SKIN
-========================================= */
-
-function aplicarSkin() {
-
-    if (skinAtual === "classica") {
-
-        botao.style.background =
-            "radial-gradient(circle,#ff3030,#900000)";
-
-        botao.style.borderColor =
-            "#ff7777";
-
-    }
-
-
-    if (skinAtual === "azul") {
-
-        botao.style.background =
-            "radial-gradient(circle,#168cff,#003d91)";
-
-        botao.style.borderColor =
-            "#65b5ff";
-
-    }
-
-
-    if (skinAtual === "verde") {
-
-        botao.style.background =
-            "radial-gradient(circle,#20c970,#056b38)";
-
-        botao.style.borderColor =
-            "#6affad";
-
-    }
-
-
-    if (skinAtual === "roxa") {
-
-        botao.style.background =
-            "radial-gradient(circle,#a855f7,#4c1d95)";
-
-        botao.style.borderColor =
-            "#d8b4fe";
-
-    }
-
-
-    if (skinAtual === "dourada") {
-
-        botao.style.background =
-            "radial-gradient(circle,#ffe066,#a66a00)";
-
-        botao.style.borderColor =
-            "gold";
-
-        botao.style.boxShadow =
-            "0 0 20px gold, 0 0 50px rgba(255,215,0,.7)";
-
-    }
-
-}
-
-
-/* =========================================
+/* =====================================
    TECLA ESPAÇO
-========================================= */
+===================================== */
 
 document.addEventListener(
     "keydown",
@@ -1992,7 +2052,7 @@ document.addEventListener(
             event.code === "Space" &&
             modalCodigo.style.display !== "flex" &&
             modalDesafio.style.display !== "flex" &&
-            modalLoja.style.display !== "flex"
+            modalPets.style.display !== "flex"
         ) {
 
             event.preventDefault();
@@ -2005,15 +2065,13 @@ document.addEventListener(
 );
 
 
-/* =========================================
-   INICIALIZAR
-========================================= */
-
-aplicarSkin();
+/* =====================================
+   INICIAR
+===================================== */
 
 atualizar();
 
-mudarFalaPet();
+atualizarPet();
 
 </script>
 
